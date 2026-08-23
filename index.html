@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artios Stays — Luxury Villa Rentals in Goa</title>
+  <meta name="description" content="Experience unparalleled comfort at Artios Stays. Handpicked luxury villas in Goa with private pools, curated amenities, and 24/7 concierge service." />
+  <meta property="og:title" content="Artios Stays — Luxury Villa Rentals in Goa" />
+  <meta property="og:description" content="Handpicked luxury villas in Goa with private pools and world-class service." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1540541338287-41700207dee6?w=1200&q=80" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="navbar">
+    <div class="nav__container">
+      <a href="#" class="nav__logo">
+        <img src="images/logo-white.png" alt="Artios Stays" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#properties" class="nav__link">Properties</a></li>
+        <li><a href="#testimonials" class="nav__link">Testimonials</a></li>
+        <li><a href="#host" class="nav__link">Our Host</a></li>
+        <li><a href="partner-with-us.html" class="nav__link">Partner With Us</a></li>
+        <li>
+          <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="btn btn--gold nav__cta">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Book Now
+          </a>
+        </li>
+      </ul>
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main>
+  <!-- ── Hero ── -->
+  <section class="hero" id="hero">
+    <div class="hero__bg">
+      <video class="hero__video" autoplay muted loop playsinline poster="images/hero-poster.jpg" aria-hidden="true">
+        <source src="videos/hero-pool.mp4" type="video/mp4" />
+      </video>
+      <img src="images/hero-poster.jpg" alt="Aerial view of a luxury infinity pool by the ocean" class="hero__img" />
+      <div class="hero__overlay"></div>
+      <button class="hero__video-toggle" id="heroVideoToggle" type="button" aria-pressed="false" aria-label="Pause background video">
+        <svg class="hero__video-toggle-icon hero__video-toggle-icon--pause" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+        <svg class="hero__video-toggle-icon hero__video-toggle-icon--play" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+    </div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Goa, India &mdash; Curated Luxury</p>
+      <h1 class="hero__title">Crafting Unforgettable<br /><em>Luxury Experiences</em></h1>
+      <p class="hero__subtitle">Handpicked private villas with pools, world-class amenities,<br class="desktop-only" /> and 24/7 concierge service across Goa's finest locations.</p>
+      <div class="hero__actions">
+        <a href="#properties" class="btn btn--gold">Explore Villas <span class="btn__arrow">→</span></a>
+        <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="btn btn--outline-white">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat">
+        <span class="hero__stat-num">3+</span>
+        <span class="hero__stat-label">Years Experience</span>
+      </div>
+      <div class="hero__stat-divider"></div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">500+</span>
+        <span class="hero__stat-label">Happy Guests</span>
+      </div>
+      <div class="hero__stat-divider"></div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">3</span>
+        <span class="hero__stat-label">Luxury Villas</span>
+      </div>
+      <div class="hero__stat-divider"></div>
+      <div class="hero__stat">
+        <span class="hero__stat-num">24/7</span>
+        <span class="hero__stat-label">Concierge Service</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__text" data-animate>
+          <p class="section__eyebrow">Who We Are</p>
+          <h2 class="section__title">Experience Unparalleled<br /><em>Comfort in Goa</em></h2>
+          <p class="about__desc">At Artios Stays, we curate exceptional vacation homes that combine stunning architecture, premium amenities, and unparalleled service. Every property in our collection is personally handpicked and maintained to the highest standards.</p>
+          <p class="about__desc">Whether you're planning a romantic getaway, a family vacation, or a group celebration — we ensure every detail of your stay is perfect.</p>
+          <a href="#properties" class="btn btn--dark">View Our Villas <span class="btn__arrow">→</span></a>
+        </div>
+        <div class="about__features" data-stagger>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <h3 class="feature-card__title">Premium Locations</h3>
+              <p class="feature-card__desc">Exclusive properties in Goa's most coveted neighborhoods — Siolim, Arpora, and Anjuna.</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="feature-card__title">Luxury Service</h3>
+              <p class="feature-card__desc">Round-the-clock concierge with personalized guest experiences tailored to your needs.</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <div>
+              <h3 class="feature-card__title">Private Villas</h3>
+              <p class="feature-card__desc">Fully private properties with dedicated pools — your own personal paradise in Goa.</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-card__icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h3 class="feature-card__title">24/7 Security</h3>
+              <p class="feature-card__desc">All our properties come with round-the-clock security for your peace of mind.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Properties ── -->
+  <section class="section properties" id="properties">
+    <div class="container">
+      <div class="section__header" data-animate>
+        <p class="section__eyebrow">Our Collection</p>
+        <h2 class="section__title">Handpicked Luxury Villas</h2>
+        <p class="section__subtitle">Each property is personally curated to deliver an exceptional experience in the heart of Goa.</p>
+      </div>
+      <div class="properties__grid">
+
+        <!-- Property 1 -->
+        <article class="property-card" data-animate>
+          <div class="property-card__media">
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80&auto=format" alt="LoveStory Villa Vienna" class="property-card__img" loading="lazy" />
+            <div class="property-card__badge">3 BHK</div>
+            <div class="property-card__overlay">
+              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20LoveStory%20Villa%20Vienna%20in%20Siolim" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+            </div>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Siolim, North Goa
+            </div>
+            <h3 class="property-card__name">LoveStory Villa Vienna</h3>
+            <p class="property-card__desc">A stunning 3BHK private villa nestled in the serene lanes of Siolim, featuring a sparkling private pool and elegant interiors.</p>
+            <div class="property-card__specs">
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11m18-6V7a2 2 0 00-2-2H5a2 2 0 00-2 2v4m18 0H3m18 0a2 2 0 012 2v4m-2-6v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/></svg>
+                3 Beds
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 14h.01M12 14h.01M17 14h.01M2 9.5A5.5 5.5 0 017.5 4H8a4 4 0 014 4 4 4 0 014-4h.5A5.5 5.5 0 0122 9.5V18a2 2 0 01-2 2H4a2 2 0 01-2-2V9.5z"/></svg>
+                3 Baths
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                6+3 Guests
+              </span>
+              <span class="spec spec--security">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                24/7 Security
+              </span>
+            </div>
+            <div class="property-card__amenities">
+              <span class="amenity">Private Pool</span>
+              <span class="amenity">Full Villa</span>
+              <span class="amenity">North Goa</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Property 2 -->
+        <article class="property-card property-card--featured" data-animate data-delay="150">
+          <div class="property-card__media">
+            <img src="https://images.unsplash.com/photo-1582610116397-edb72e301bd0?w=800&q=80&auto=format" alt="LoveStory Villas 2BHK" class="property-card__img" loading="lazy" />
+            <div class="property-card__badge">2 BHK</div>
+            <div class="property-card__tag">Popular</div>
+            <div class="property-card__overlay">
+              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20LoveStory%20Villas%202BHK%20in%20Arpora" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+            </div>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Arpora, North Goa
+            </div>
+            <h3 class="property-card__name">LoveStory Villas — Baga</h3>
+            <p class="property-card__desc">An intimate 2BHK private villa with its own pool, perfect for couples or small families seeking a cozy Goan retreat near Baga.</p>
+            <div class="property-card__specs">
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11m18-6V7a2 2 0 00-2-2H5a2 2 0 00-2 2v4m18 0H3m18 0a2 2 0 012 2v4m-2-6v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/></svg>
+                2 Beds
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 14h.01M12 14h.01M17 14h.01M2 9.5A5.5 5.5 0 017.5 4H8a4 4 0 014 4 4 4 0 014-4h.5A5.5 5.5 0 0122 9.5V18a2 2 0 01-2 2H4a2 2 0 01-2-2V9.5z"/></svg>
+                2 Baths
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                4+2 Guests
+              </span>
+              <span class="spec spec--security">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                24/7 Security
+              </span>
+            </div>
+            <div class="property-card__amenities">
+              <span class="amenity">Private Pool</span>
+              <span class="amenity">Full Villa</span>
+              <span class="amenity">Near Baga</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Property 3 -->
+        <article class="property-card" data-animate data-delay="300">
+          <div class="property-card__media">
+            <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=80&auto=format" alt="Rumour Villa Anjuna" class="property-card__img" loading="lazy" />
+            <div class="property-card__badge">4 BHK</div>
+            <div class="property-card__overlay">
+              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20Rumour%20Villa%20in%20Anjuna" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+            </div>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__location">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Anjuna, North Goa
+            </div>
+            <h3 class="property-card__name">Rumour Villa Goa</h3>
+            <p class="property-card__desc">A grand 4BHK luxury villa in Anjuna Beach with a private pool, in-house chef, and space for up to 10 guests — perfect for group getaways.</p>
+            <div class="property-card__specs">
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v11m18-6V7a2 2 0 00-2-2H5a2 2 0 00-2 2v4m18 0H3m18 0a2 2 0 012 2v4m-2-6v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/></svg>
+                4 Beds
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 14h.01M12 14h.01M17 14h.01M2 9.5A5.5 5.5 0 017.5 4H8a4 4 0 014 4 4 4 0 014-4h.5A5.5 5.5 0 0122 9.5V18a2 2 0 01-2 2H4a2 2 0 01-2-2V9.5z"/></svg>
+                4 Baths
+              </span>
+              <span class="spec">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                10 Guests
+              </span>
+              <span class="spec spec--security">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                24/7 Security
+              </span>
+            </div>
+            <div class="property-card__amenities">
+              <span class="amenity">Private Pool</span>
+              <span class="amenity">In-House Chef</span>
+              <span class="amenity">Anjuna Beach</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      <div class="properties__cta" data-animate>
+        <p>Looking for something specific? We'll help you find the perfect villa.</p>
+        <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="btn btn--gold">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Talk to Us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ── -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section__header" data-animate>
+        <p class="section__eyebrow">Guest Reviews</p>
+        <h2 class="section__title">What Our Guests Say</h2>
+        <p class="section__subtitle">Real experiences from our 500+ happy guests across India and beyond.</p>
+      </div>
+      <div class="testimonials__track-wrapper">
+        <div class="testimonials__track" id="testimonialTrack">
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"We got a great deal and the place exactly matches the photos. Clean rooms, spacious, excellent vibes and a fresh environment around."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">R</div>
+              <div>
+                <div class="testimonial-card__name">Rahul</div>
+                <div class="testimonial-card__location">Pune, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Place is exactly the same as shown in the pictures. Caretaker Roonie is super helpful and tries to accommodate all requirements. Overall a pleasant stay."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">G</div>
+              <div>
+                <div class="testimonial-card__name">Gaurav</div>
+                <div class="testimonial-card__location">Indore, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Great stay, friendly host and excellent communication with Shweta. The caretaker was a great help too. Highly recommend!"</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">S</div>
+              <div>
+                <div class="testimonial-card__name">Sanandiya</div>
+                <div class="testimonial-card__location">London, United Kingdom</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Beautiful property with Goan vibes and colours. Would definitely recommend for someone wanting to live near prime north Goa beaches and also wants to relax."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">R</div>
+              <div>
+                <div class="testimonial-card__name">Rishit</div>
+                <div class="testimonial-card__location">Mumbai, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Had a great stay at the Villa — well maintained, easy check-in. Nirmal was amazing, always ready to help and constantly checked if we needed anything. Would love to visit again!"</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">S</div>
+              <div>
+                <div class="testimonial-card__name">Sarveshmurthy</div>
+                <div class="testimonial-card__location">Hyderabad, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"The place was really good — having a private pool for a 2BHK is amazing. The rooms are nice and cozy. Really enjoyed the stay overall."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">C</div>
+              <div>
+                <div class="testimonial-card__name">Chaitanya</div>
+                <div class="testimonial-card__location">Bangalore, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Peaceful stay at a really great location. The villa was clean, well-appointed and the team was very responsive throughout."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">P</div>
+              <div>
+                <div class="testimonial-card__name">Prajakta</div>
+                <div class="testimonial-card__location">Delhi, India</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">"Great place! Exactly as described. The host was responsive and the property was immaculate. Truly a wonderful Goa experience."</blockquote>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">S</div>
+              <div>
+                <div class="testimonial-card__name">Shubham</div>
+                <div class="testimonial-card__location">Delhi, India</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="testimonials__controls">
+        <button class="testimonials__btn" id="prevBtn" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="testimonials__dots" id="testimonialDots"></div>
+        <button class="testimonials__btn" id="nextBtn" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Host ── -->
+  <section class="section host" id="host">
+    <div class="container">
+      <div class="host__grid">
+        <div class="host__image-wrap" data-animate>
+          <div class="host__image-frame">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80&auto=format" alt="Shweta Nair, Founder of Artios Stays" class="host__image" loading="lazy" />
+          </div>
+          <div class="host__badge">
+            <span class="host__badge-num">500+</span>
+            <span class="host__badge-text">Happy Guests</span>
+          </div>
+        </div>
+        <div class="host__content" data-animate data-delay="200">
+          <p class="section__eyebrow">Meet Your Host</p>
+          <h2 class="section__title">Shweta Nair</h2>
+          <p class="host__role">Founder, Artios Hospitality</p>
+          <p class="host__bio">I'm Shweta Nair, the founder of Artios Hospitality, and I have a deep passion for curating unique stays that blend luxury with local charm. With years of experience in real estate and hospitality, I've transformed premium properties into inviting spaces that feel like home — whether you're here to relax, explore, or celebrate.</p>
+          <p class="host__bio">At Artios Stays, we go beyond just offering accommodations. We focus on personalized service, thoughtfully designed spaces, and seamless experiences, ensuring that every guest enjoys the best of Goa. We look forward to hosting you and making your stay truly special!</p>
+          <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="btn btn--dark">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Message Shweta
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Banner ── -->
+  <section class="cta-banner">
+    <div class="cta-banner__bg">
+      <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80&auto=format" alt="Luxury pool" class="cta-banner__img" loading="lazy" />
+      <div class="cta-banner__overlay"></div>
+    </div>
+    <div class="cta-banner__content">
+      <p class="section__eyebrow">Ready to Book?</p>
+      <h2 class="cta-banner__title">Elegant. Exclusive.<br /><em>Unforgettable.</em></h2>
+      <p class="cta-banner__subtitle">Your dream Goa villa is just a message away.</p>
+      <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="btn btn--gold btn--lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Book Your Stay on WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Partner CTA ── -->
+  <section class="cta-gradient">
+    <div class="cta-gradient__content">
+      <p class="section__eyebrow">Own a Property in Goa?</p>
+      <h2 class="cta-gradient__title">Have a villa that's ready<br /><em>for guests?</em></h2>
+      <a href="partner-with-us.html" class="btn btn--dark btn--lg">Partner with Artios <span class="btn__arrow">→</span></a>
+    </div>
+  </section>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <img src="images/logo-white.png" alt="Artios Stays" class="footer__logo-img" />
+          </div>
+          <p class="footer__tagline">Elegant. Exclusive. Unforgettable.</p>
+          <p class="footer__desc">We're a passionate team dedicated to crafting exceptional luxury stays in Goa. With seamless service and attention to detail, we make every moment effortless and unforgettable.</p>
+          <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="footer__whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            +91 77095 89459
+          </a>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__heading">Quick Links</h3>
+          <ul class="footer__links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#properties">Our Properties</a></li>
+            <li><a href="#testimonials">Guest Reviews</a></li>
+            <li><a href="#host">Meet the Host</a></li>
+            <li><a href="partner-with-us.html">Partner With Us</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__heading">Our Villas</h3>
+          <ul class="footer__links">
+            <li><a href="https://wa.me/917709589459?text=LoveStory%20Villa%20Vienna%20enquiry" target="_blank" rel="noopener">LoveStory Villa Vienna</a></li>
+            <li><a href="https://wa.me/917709589459?text=LoveStory%20Villas%20Baga%20enquiry" target="_blank" rel="noopener">LoveStory Villas — Baga</a></li>
+            <li><a href="https://wa.me/917709589459?text=Rumour%20Villa%20enquiry" target="_blank" rel="noopener">Rumour Villa Goa</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h3 class="footer__heading">Contact</h3>
+          <ul class="footer__links">
+            <li>
+              <a href="https://wa.me/917709589459" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-right:6px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp Us
+              </a>
+            </li>
+            <li>Goa, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2025 Artios Stays. All Rights Reserved.</p>
+        <p>Made with care in Goa</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
