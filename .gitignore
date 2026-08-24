@@ -2,6 +2,5 @@
 .claude/
 
 # Source/reference material, not part of the deployed site — the compressed,
-# actually-used copies live in videos/ and were built from these.
-Hero_video.mp4
+# actually-used copy lives in videos/hero-pool.mp4 and was built from this.
 Write ups/

@@ -54,14 +54,31 @@ if (heroVideo && heroVideoToggle) {
     heroVideoToggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
   };
 
+  // The button's icon must reflect *actual* playback state, not just the
+  // two things this script itself does — a browser can silently refuse to
+  // autoplay (Safari's autoplay/Low Power Mode policies, e.g.) with no
+  // error to catch, which used to leave the button showing "pause" (as if
+  // playing) while the video sat frozen with no visible way to start it.
+  heroVideo.addEventListener('play',  () => setToggleState(false));
+  heroVideo.addEventListener('pause', () => setToggleState(true));
+
   if (prefersReducedMotion) {
+    // .pause() on a video that never actually started playing yet doesn't
+    // reliably fire a 'pause' event (it's a no-op state-wise), so the
+    // button needs its state set explicitly here too, not just via the
+    // event listeners above.
     heroVideo.pause();
     setToggleState(true);
+  } else {
+    // The `autoplay` attribute already asks for this; calling .play() too
+    // and catching the rejection is what actually lets us detect a block
+    // instead of assuming success.
+    heroVideo.play().catch(() => setToggleState(true));
   }
 
   heroVideoToggle.addEventListener('click', () => {
-    if (heroVideo.paused) { heroVideo.play(); setToggleState(false); }
-    else { heroVideo.pause(); setToggleState(true); }
+    if (heroVideo.paused) heroVideo.play().catch(() => {});
+    else heroVideo.pause();
   });
 }
 
