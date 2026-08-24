@@ -107,7 +107,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-content: center;
   gap: 16px;
 }
-.section--light .section__eyebrow { color: var(--terracotta); }
+.section--light .section__eyebrow { color: var(--terracotta-deep); }
 .section__eyebrow::before,
 .section__eyebrow::after {
   content: '';
@@ -158,6 +158,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .section--light .section__subtitle { color: var(--text-on-light-mid); }
 .desktop-only { display: inline; }
+
+/* Visually hidden but still readable by screen readers/assistive tech —
+   used where a heading needs to exist for correct document structure
+   (no skipped levels) without adding a redundant visible line of copy. */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ── Buttons (pill) ── */
 .btn {
@@ -376,9 +389,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute; inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(23,17,13,.7) 0%,
-    rgba(43,24,16,.62) 40%,
-    rgba(23,17,13,.88) 100%
+    rgba(23,17,13,.8) 0%,
+    rgba(43,24,16,.68) 40%,
+    rgba(23,17,13,.9) 100%
   );
 }
 .hero__content {
@@ -394,7 +407,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--terracotta-light);
+  /* --terracotta-light doesn't have enough headroom to stay AA-compliant
+     against this hero's video (its brightest zone sits right where the
+     eyebrow renders) without crushing the overlay to near-black — --peach
+     is light enough to clear it with real margin instead. */
+  color: var(--peach);
   text-shadow: 0 1px 10px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.5);
   margin-bottom: 32px;
   display: flex;
@@ -612,7 +629,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .property-card__tag {
   position: absolute;
   top: 16px; right: 16px;
-  background: var(--terracotta);
+  background: var(--terracotta-mid);
   color: var(--white);
   font-size: 9px;
   font-weight: 500;
@@ -640,7 +657,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--terracotta);
+  color: var(--terracotta-deep);
   margin-bottom: 10px;
 }
 .property-card__name {
@@ -675,7 +692,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   color: var(--text-on-light-mid);
 }
-.spec--security { color: var(--terracotta); font-weight: 500; }
+.spec--security { color: var(--terracotta-deep); font-weight: 500; }
 .property-card__amenities { display: flex; flex-wrap: wrap; }
 .amenity {
   font-size: 10px;
@@ -728,7 +745,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-shadow: var(--shadow-lg);
 }
 .testimonial-card__stars {
-  color: var(--terracotta);
+  color: var(--terracotta-deep);
   font-size: 12px;
   letter-spacing: 4px;
   margin-bottom: 20px;
@@ -875,7 +892,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 16px;
   font-style: italic;
   font-weight: 300;
-  color: var(--terracotta);
+  color: var(--terracotta-deep);
   margin-bottom: 28px;
 }
 .host__bio {
@@ -1340,9 +1357,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .work { background: var(--cream); color: var(--text-on-light); }
 .work__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  max-width: 820px;
+  max-width: 620px;
   margin: 0 auto 52px;
   text-align: center;
 }
@@ -1449,6 +1466,264 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .lead-form textarea { resize: vertical; min-height: 88px; }
 .lead-form .btn { justify-content: center; margin-top: 4px; }
 
+/* ═════════════════════════════════════════
+   Simple hero — solid-bg hero used on About,
+   Villas and Contact (no photo, so none of the
+   text-over-image contrast work applies here).
+   ═════════════════════════════════════════ */
+.simple-hero {
+  background: var(--black);
+  text-align: center;
+  padding: 170px 24px 90px;
+}
+.simple-hero__content { max-width: 720px; margin: 0 auto; }
+.simple-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 5vw, 54px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.simple-hero__title em { font-style: italic; color: var(--peach); }
+.simple-hero__subtitle {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-on-dark-mid);
+  line-height: 1.85;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.simple-hero__actions { margin-top: 32px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+/* ── About — story + pull-quote ── */
+.story { background: var(--cream); color: var(--text-on-light); }
+.story__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.story__lede {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--terracotta-deep);
+  margin-bottom: 24px;
+}
+.story__body p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-on-light-mid);
+  line-height: 1.95;
+  margin-bottom: 16px;
+}
+.story__photo { position: relative; }
+.story__photo-frame {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.story__photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+.story__quote {
+  margin-top: 40px;
+  padding: 28px 32px;
+  background: var(--white);
+  border-left: 3px solid var(--terracotta);
+  border-radius: var(--radius-card-sm);
+  box-shadow: var(--shadow-sm);
+}
+.story__quote p {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-on-light);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.story__quote cite {
+  font-style: normal;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--terracotta-deep);
+  font-weight: 500;
+}
+
+/* ── About — "The Artios Way" numbered list ── */
+.way { background: var(--black); }
+.way__list { max-width: 720px; margin: 0 auto; }
+.way-item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 24px;
+  padding: 32px 0;
+  border-top: 1px solid var(--border-dark);
+}
+.way__list .way-item:last-child { border-bottom: 1px solid var(--border-dark); }
+.way-item__num {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--terracotta-light);
+}
+.way-item__title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+.way-item__desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-on-dark-mid);
+  line-height: 1.85;
+  max-width: 480px;
+}
+
+/* ── Villas — filter tabs ── */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 56px;
+}
+.filter-tab {
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  color: var(--text-on-light-mid);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: var(--transition);
+}
+.filter-tab:hover { border-color: var(--terracotta); color: var(--terracotta-deep); }
+.filter-tab.active { background: var(--black); border-color: var(--black); color: var(--white); }
+
+/* ── Villas — price + tag additions on the shared .property-card ── */
+.property-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+  gap: 12px;
+}
+.property-card__price { text-align: right; white-space: nowrap; }
+.property-card__price-num {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--terracotta-deep);
+}
+.property-card__price-unit {
+  display: block;
+  font-size: 10px;
+  color: var(--text-on-light-mid);
+  letter-spacing: 0.04em;
+}
+.villas__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1000px;
+  margin: 0 auto 64px;
+}
+.villa-card[hidden] { display: none; }
+
+/* ── Homepage quick-link cards ── */
+.quicklinks { background: var(--cream); color: var(--text-on-light); }
+.quicklinks__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.quicklink-card {
+  background: var(--white);
+  padding: 36px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: background var(--transition);
+}
+.quicklink-card:hover { background: var(--cream-2); }
+.quicklink-card__title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-on-light);
+  margin-bottom: 6px;
+}
+.quicklink-card__desc { font-size: 13px; color: var(--text-on-light-mid); }
+.quicklink-card__arrow {
+  flex-shrink: 0;
+  color: var(--terracotta);
+  transition: transform var(--transition);
+}
+.quicklink-card:hover .quicklink-card__arrow { transform: translateX(4px); }
+
+/* ── Homepage "Say Hello" strip ── */
+.say-hello { background: var(--cream-2); text-align: center; }
+.say-hello__email {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-style: italic;
+  color: var(--terracotta-deep);
+  margin: 8px 0 6px;
+}
+.say-hello__note { font-size: 13px; color: var(--text-on-light-mid); margin-bottom: 28px; }
+
+/* ── Contact page ── */
+.contact-info { display: flex; flex-direction: column; gap: 28px; margin-top: 36px; }
+.contact-info__item { display: flex; gap: 18px; align-items: flex-start; }
+.contact-info__icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-terracotta);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-info__title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  color: var(--text-on-light);
+  margin-bottom: 4px;
+}
+.contact-info__value { font-size: 14px; color: var(--terracotta-deep); }
+.contact-info__value a { color: inherit; }
+.contact-info__note { font-size: 13px; color: var(--text-on-light-mid); }
+.contact-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border-light);
+}
+.contact-social__icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-light);
+  color: var(--text-on-light-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--terracotta); }
+
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .properties__grid { grid-template-columns: repeat(2, 1fr); }
@@ -1472,6 +1747,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .benefits__grid { grid-template-columns: 1fr 1fr; }
   .work__grid { grid-template-columns: 1fr; max-width: 320px; gap: 40px; }
   .lead__grid { grid-template-columns: 1fr; gap: 40px; }
+  .story__grid { grid-template-columns: 1fr; gap: 48px; }
+  .story__photo-frame { max-width: 420px; margin: 0 auto; }
+  .villas__grid { grid-template-columns: 1fr; max-width: 480px; }
+  .quicklinks__grid { grid-template-columns: 1fr; }
 
   /* Nav switches to hamburger from tablet portrait down — six links
      plus the CTA no longer fit the inline bar below this width. */
@@ -1547,6 +1826,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .stat-card { padding: 22px 20px; }
   .stat-card__ratio { font-size: 32px; }
   .cta-gradient { padding: 100px 20px 90px; }
+
+  .simple-hero { padding: 140px 20px 70px; }
+  .way-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
+  .way-item__num { font-size: 20px; }
+  .property-card__top { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .property-card__price { text-align: left; }
+  .quicklink-card { padding: 28px 24px; flex-direction: column; align-items: flex-start; gap: 10px; }
 }
 
 @media (max-width: 480px) {

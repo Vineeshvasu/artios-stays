@@ -292,6 +292,44 @@ if (leadForm) {
   });
 }
 
+// ── General contact form → email (contact.html). Unlike the partner lead
+//    form, this one hands off to the visitor's own email client via a
+//    mailto: link — matches the page's own copy, which leads with "Email
+//    Us" as the primary channel. Still no backend involved. ──
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(contactForm).entries());
+    const subject = data.subject ? data.subject : `Message from ${data.name || 'the website'}`;
+    const body = [
+      data.message,
+      '',
+      `— ${data.name || ''}`,
+      data.email || '',
+    ].join('\n');
+    const url = `mailto:hello@artiosstays.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = url;
+  });
+}
+
+// ── Villas page filter tabs ──
+const filterTabs = document.getElementById('filterTabs');
+const villasGrid = document.getElementById('villasGrid');
+if (filterTabs && villasGrid) {
+  const cards = Array.from(villasGrid.querySelectorAll('.villa-card'));
+  filterTabs.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-tab');
+    if (!btn) return;
+    filterTabs.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t === btn));
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.hidden = !show;
+    });
+  });
+}
+
 // ── Smooth anchor offset (accounts for fixed nav) ──
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', e => {
