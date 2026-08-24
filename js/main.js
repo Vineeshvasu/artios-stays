@@ -59,8 +59,10 @@ if (heroVideo && heroVideoToggle) {
   // autoplay (Safari's autoplay/Low Power Mode policies, e.g.) with no
   // error to catch, which used to leave the button showing "pause" (as if
   // playing) while the video sat frozen with no visible way to start it.
-  heroVideo.addEventListener('play',  () => setToggleState(false));
-  heroVideo.addEventListener('pause', () => setToggleState(true));
+  // Also keeps the CSS Ken Burns zoom (see style.css) in lockstep — no
+  // point "pausing" the video while a zoom keeps silently animating.
+  heroVideo.addEventListener('play',  () => { setToggleState(false); heroVideo.style.animationPlayState = 'running'; });
+  heroVideo.addEventListener('pause', () => { setToggleState(true);  heroVideo.style.animationPlayState = 'paused';  });
 
   if (prefersReducedMotion) {
     // .pause() on a video that never actually started playing yet doesn't
@@ -69,6 +71,7 @@ if (heroVideo && heroVideoToggle) {
     // event listeners above.
     heroVideo.pause();
     setToggleState(true);
+    heroVideo.style.animationPlayState = 'paused';
   } else {
     // The `autoplay` attribute already asks for this; calling .play() too
     // and catching the rejection is what actually lets us detect a block

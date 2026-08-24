@@ -341,16 +341,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-content: center;
   overflow: hidden;
 }
-.hero__bg { position: absolute; inset: 0; }
-/* .hero__img stays a plain, non-positioned element (the mobile/no-video
-   fallback); .hero__video is position:absolute so it paints above it
-   automatically, in DOM order, with no z-index juggling needed. */
+/* isolation:isolate gives .hero__bg its own contained stacking context, so
+   the explicit z-index values below are only ever compared against each
+   other — never against .hero__content next door. Learned the hard way:
+   .hero__img's `will-change: transform` (for the scroll-parallax effect)
+   silently made it establish a stacking context too, with no z-index at
+   all — CSS still treats that as z-index:0, ordered by DOM position among
+   siblings in the same bucket, which put the img (later in the HTML)
+   ABOVE the video. It looked identical to the real thing in screenshots
+   (the poster is a frame from the same footage) while actually just
+   being a static picture sitting in front of a video playing invisibly
+   underneath — no amount of the video actually working fixed that. */
+.hero__bg { position: absolute; inset: 0; isolation: isolate; }
 .hero__img {
   width: 100%;
   height: 115%;
   object-fit: cover;
   object-position: center 60%;
   will-change: transform;
+  position: relative;
+  z-index: 1;
 }
 .hero__video {
   position: absolute;
@@ -358,6 +368,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 2;
+  /* This footage is a near-static drone hold — barely any motion of its
+     own, which reads as a frozen photo even while it's genuinely
+     decoding and playing. A slow Ken Burns zoom gives it visible life
+     without needing different footage. Killed automatically by the
+     global prefers-reduced-motion rule, and paused/resumed in sync with
+     the video itself via JS (see the play/pause handlers in main.js). */
+  animation: heroKenBurns 26s ease-in-out infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+@keyframes heroKenBurns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
 }
 /* Required stop control for auto-moving content (WCAG 2.2.2) — also lets
    anyone kill the motion regardless of their OS reduced-motion setting. */
@@ -368,6 +392,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   right: 24px;
   top: 110px;
+  z-index: 4;
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -387,6 +412,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero__video-toggle.is-paused .hero__video-toggle-icon--play { display: block; }
 .hero__overlay {
   position: absolute; inset: 0;
+  z-index: 3;
   background: linear-gradient(
     to bottom,
     rgba(23,17,13,.8) 0%,
