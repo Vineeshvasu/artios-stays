@@ -43,8 +43,16 @@
   <!-- ── Hero ── -->
   <section class="hero" id="hero">
     <div class="hero__bg">
-      <video class="hero__video" muted loop playsinline poster="images/hero-poster.jpg" aria-hidden="true" preload="none">
+      <!-- Boomerang loop: two real video files (a forward clip and a true
+           frame-by-frame reverse of it) swapped on `ended` in main.js, so
+           the loop plays forward → back → forward instead of hard-cutting
+           to the start. Native <video> has no reliable reverse playback,
+           so this is the only cross-browser way to get that effect. -->
+      <video class="hero__video hero__video--forward" muted playsinline poster="images/hero-poster.jpg" aria-hidden="true" preload="none">
         <source src="videos/hero-pool.mp4" type="video/mp4" />
+      </video>
+      <video class="hero__video hero__video--reverse" muted playsinline aria-hidden="true" preload="none">
+        <source src="videos/hero-pool-reverse.mp4" type="video/mp4" />
       </video>
       <img src="images/hero-poster.jpg" alt="Aerial drone view of an Artios-managed villa nestled in tropical forest" class="hero__img" />
       <div class="hero__overlay"></div>

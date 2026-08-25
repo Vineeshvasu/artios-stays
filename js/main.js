@@ -55,7 +55,8 @@ function updateParallax() {
 // estimate, not a network type. It also doesn't exist in Safari/iOS,
 // full stop, so those visitors always get the static poster — the same
 // safe fallback they'd have gotten anyway. ──
-const heroVideo       = document.querySelector('.hero__video');
+const heroVideoFwd    = document.querySelector('.hero__video--forward');
+const heroVideoRev    = document.querySelector('.hero__video--reverse');
 const heroVideoToggle = document.getElementById('heroVideoToggle');
 const heroSection     = document.getElementById('hero');
 
@@ -67,11 +68,24 @@ function shouldTryHeroVideo() {
   return !!(conn && !conn.saveData && conn.effectiveType === '4g');
 }
 
-if (heroVideo && heroVideoToggle && heroSection) {
+if (heroVideoFwd && heroVideoRev && heroVideoToggle && heroSection) {
+  // Boomerang loop: hero-pool-reverse.mp4 is a true frame-by-frame reverse
+  // of hero-pool.mp4 (ffmpeg -vf reverse), so its first frame is
+  // pixel-identical to the forward clip's last frame and vice versa.
+  // Swapping which element is .is-active the instant one `ended`s — rather
+  // than looping either one — is what turns the old hard-cut-to-start loop
+  // into a smooth forward → reverse → forward cycle.
+  let activeVideo = heroVideoFwd;
+
   const setToggleState = paused => {
     heroVideoToggle.classList.toggle('is-paused', paused);
     heroVideoToggle.setAttribute('aria-pressed', String(paused));
     heroVideoToggle.setAttribute('aria-label', paused ? 'Play background video' : 'Pause background video');
+  };
+  const syncKenBurns = paused => {
+    const state = paused ? 'paused' : 'running';
+    heroVideoFwd.style.animationPlayState = state;
+    heroVideoRev.style.animationPlayState = state;
   };
 
   // The button's icon must reflect *actual* playback state, not just the
@@ -81,25 +95,46 @@ if (heroVideo && heroVideoToggle && heroSection) {
   // playing) while the video sat frozen with no visible way to start it.
   // Also keeps the CSS Ken Burns zoom (see style.css) in lockstep — no
   // point "pausing" the video while a zoom keeps silently animating.
-  heroVideo.addEventListener('play',  () => { setToggleState(false); heroVideo.style.animationPlayState = 'running'; });
-  heroVideo.addEventListener('pause', () => { setToggleState(true);  heroVideo.style.animationPlayState = 'paused';  });
+  // Both videos get these listeners, but only react when they're the one
+  // currently on screen — the inactive one is buffering silently underneath.
+  [heroVideoFwd, heroVideoRev].forEach(v => {
+    v.addEventListener('play',  () => { if (v === activeVideo) { setToggleState(false); syncKenBurns(false); } });
+    v.addEventListener('pause', () => { if (v === activeVideo) { setToggleState(true);  syncKenBurns(true);  } });
+  });
+
+  function swapAndPlay(finished) {
+    const next = finished === heroVideoFwd ? heroVideoRev : heroVideoFwd;
+    finished.classList.remove('is-active');
+    next.classList.add('is-active');
+    activeVideo = next;
+    next.currentTime = 0;
+    next.play().catch(() => setToggleState(true));
+  }
+  heroVideoFwd.addEventListener('ended', () => swapAndPlay(heroVideoFwd));
+  heroVideoRev.addEventListener('ended', () => swapAndPlay(heroVideoRev));
 
   if (shouldTryHeroVideo()) {
     heroSection.classList.add('video-active');
+    heroVideoFwd.classList.add('is-active');
     // Calling .play() ourselves (rather than relying on an `autoplay`
     // attribute we deliberately removed) is what actually triggers the
     // fetch now, and catching the rejection is what lets us detect a
     // block instead of assuming success.
-    heroVideo.play().catch(() => setToggleState(true));
+    heroVideoFwd.play().catch(() => setToggleState(true));
+    // Start fetching the reverse clip in parallel with the forward one
+    // playing, so it's fully buffered and ready to swap in the instant
+    // the forward clip ends — not starting a fresh fetch at that point.
+    heroVideoRev.preload = 'auto';
+    heroVideoRev.load();
   }
   // If shouldTryHeroVideo() was false, .video-active is never added, so
-  // .hero__video and its toggle stay display:none (CSS default) and the
-  // static poster <img> is all that renders — no request for the video
-  // file is ever made.
+  // both .hero__video elements and the toggle stay display:none (CSS
+  // default) and the static poster <img> is all that renders — no
+  // request for either video file is ever made.
 
   heroVideoToggle.addEventListener('click', () => {
-    if (heroVideo.paused) heroVideo.play().catch(() => {});
-    else heroVideo.pause();
+    if (activeVideo.paused) activeVideo.play().catch(() => {});
+    else activeVideo.pause();
   });
 }
 

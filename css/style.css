@@ -415,8 +415,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
      the video itself via JS (see the play/pause handlers in main.js). */
   animation: heroKenBurns 26s ease-in-out infinite alternate;
   transform-origin: center center;
-  will-change: transform;
+  will-change: transform, opacity;
 }
+/* Both the forward and reverse <video> elements sit stacked at the same
+   z-index (2) the whole time once .video-active is on — the reverse one
+   is preloading in the background so it's frame-ready the instant the
+   forward one ends. Only .is-active is actually visible; the swap in
+   main.js's `ended` handler is a hard opacity toggle with no transition,
+   which is what makes it read as seamless — the reversed file's first
+   frame is pixel-identical to the forward file's last, so a crossfade
+   would only blur a cut that doesn't need hiding. */
+.hero__video { opacity: 0; }
+.hero__video.is-active { opacity: 1; }
 @keyframes heroKenBurns {
   from { transform: scale(1); }
   to   { transform: scale(1.1); }
