@@ -346,7 +346,7 @@ if (contactForm) {
       `— ${data.name || ''}`,
       data.email || '',
     ].join('\n');
-    const url = `mailto:hello@artiosstays.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const url = `mailto:stayartios@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = url;
   });
 }
