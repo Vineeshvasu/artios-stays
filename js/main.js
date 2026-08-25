@@ -42,12 +42,32 @@ function updateParallax() {
   }
 }
 
-// ── Hero video pause/play toggle (WCAG 2.2.2: a way to stop auto-moving
-// content) — also where we honor prefers-reduced-motion by starting paused. ──
+// ── Hero video — always attempted on desktop; on mobile, only when the
+// connection looks good enough not to feel like a bait-and-switch on
+// someone's data plan. There's no `autoplay` attribute and the <video>
+// has `preload="none"`, so visibility and the decision to actually fetch
+// the file are the same gate here: nothing downloads at all unless this
+// code decides to and calls .play() itself.
+//
+// "Good enough" is inferred from the Network Information API
+// (navigator.connection), which cannot distinguish Wi-Fi from cellular
+// in most browsers that support it at all — `effectiveType` is a speed
+// estimate, not a network type. It also doesn't exist in Safari/iOS,
+// full stop, so those visitors always get the static poster — the same
+// safe fallback they'd have gotten anyway. ──
 const heroVideo       = document.querySelector('.hero__video');
 const heroVideoToggle = document.getElementById('heroVideoToggle');
+const heroSection     = document.getElementById('hero');
 
-if (heroVideo && heroVideoToggle) {
+function shouldTryHeroVideo() {
+  if (prefersReducedMotion) return false;
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+  if (!isMobile) return true;
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  return !!(conn && !conn.saveData && conn.effectiveType === '4g');
+}
+
+if (heroVideo && heroVideoToggle && heroSection) {
   const setToggleState = paused => {
     heroVideoToggle.classList.toggle('is-paused', paused);
     heroVideoToggle.setAttribute('aria-pressed', String(paused));
@@ -55,7 +75,7 @@ if (heroVideo && heroVideoToggle) {
   };
 
   // The button's icon must reflect *actual* playback state, not just the
-  // two things this script itself does — a browser can silently refuse to
+  // things this script itself does — a browser can silently refuse to
   // autoplay (Safari's autoplay/Low Power Mode policies, e.g.) with no
   // error to catch, which used to leave the button showing "pause" (as if
   // playing) while the video sat frozen with no visible way to start it.
@@ -64,20 +84,18 @@ if (heroVideo && heroVideoToggle) {
   heroVideo.addEventListener('play',  () => { setToggleState(false); heroVideo.style.animationPlayState = 'running'; });
   heroVideo.addEventListener('pause', () => { setToggleState(true);  heroVideo.style.animationPlayState = 'paused';  });
 
-  if (prefersReducedMotion) {
-    // .pause() on a video that never actually started playing yet doesn't
-    // reliably fire a 'pause' event (it's a no-op state-wise), so the
-    // button needs its state set explicitly here too, not just via the
-    // event listeners above.
-    heroVideo.pause();
-    setToggleState(true);
-    heroVideo.style.animationPlayState = 'paused';
-  } else {
-    // The `autoplay` attribute already asks for this; calling .play() too
-    // and catching the rejection is what actually lets us detect a block
-    // instead of assuming success.
+  if (shouldTryHeroVideo()) {
+    heroSection.classList.add('video-active');
+    // Calling .play() ourselves (rather than relying on an `autoplay`
+    // attribute we deliberately removed) is what actually triggers the
+    // fetch now, and catching the rejection is what lets us detect a
+    // block instead of assuming success.
     heroVideo.play().catch(() => setToggleState(true));
   }
+  // If shouldTryHeroVideo() was false, .video-active is never added, so
+  // .hero__video and its toggle stay display:none (CSS default) and the
+  // static poster <img> is all that renders — no request for the video
+  // file is ever made.
 
   heroVideoToggle.addEventListener('click', () => {
     if (heroVideo.paused) heroVideo.play().catch(() => {});

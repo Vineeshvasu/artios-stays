@@ -389,6 +389,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   z-index: 1;
 }
+/* Hidden by default everywhere — JS reveals it (adds .video-active to
+   .hero) only once it has actually decided to play: always on desktop,
+   and on mobile only over a connection that looks good enough (see
+   main.js). Gating visibility AND the decision to fetch through the same
+   JS switch means a mobile visitor on a poor connection never downloads
+   the video at all, not just never sees it — the old version hid it with
+   a media query alone, which did nothing to stop the browser fetching an
+   `autoplay` video's source regardless of its CSS display. */
+.hero__video, .hero__video-toggle { display: none; }
+.hero.video-active .hero__video { display: block; }
+.hero.video-active .hero__video-toggle { display: flex; }
 .hero__video {
   position: absolute;
   inset: 0;
@@ -428,7 +439,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255,248,242,.3);
   color: var(--white);
-  display: flex;
+  /* display is set by the .hero.video-active rule above, not here — this
+     button should never be visible while the video itself isn't active. */
   align-items: center;
   justify-content: center;
   transition: background var(--transition), border-color var(--transition);
@@ -1845,11 +1857,6 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
 @media (max-width: 768px) {
   .section { padding: 80px 0; }
   .container { padding: 0 20px; }
-
-  /* Skip the autoplaying video on small/likely-cellular screens — the
-     poster image (same source frame) takes over as a static hero bg. */
-  .hero__video { display: none; }
-  .hero__video-toggle { display: none; }
 
   .hero__stats { padding: 16px 8px; }
   .hero__stat { padding: 0 18px; }
