@@ -1,49 +1,58 @@
 /* ─────────────────────────────────────────
    Artios Stays — Stylesheet
+   White / pastel-orange, light-mode palette.
    ───────────────────────────────────────── */
 
 /* ── Tokens ── */
 :root {
-  /* Core palette — warm near-black + terracotta + cream */
-  --black:        #17110D;
-  --dark-2:       #1E1610;
-  --dark-3:       #271C14;
+  /* Core palette — white body, pastel-orange accents, warm-brown text.
+     Photo/video heroes (.hero, .cta-banner, .page-hero) are the one
+     deliberate exception: they keep a dark scrim over the image for text
+     legibility, same as almost every light-mode site with a photo hero. */
+  --black:        #2A1B10;
+  --dark-2:       #3A2818;
+  --dark-3:       #4A3524;
   --terracotta:       #C1592E;
   --terracotta-light: #E0885A;
   --terracotta-deep:  #7A3419;
-  --terracotta-pale:  #EFC9AC;
+  --terracotta-pale:  #FFE3CC;
   /* Accessible solid-fill orange: white text at 4.5:1+ against this, unlike
      --terracotta (4.43:1, fails AA) or --terracotta-light (fails outright).
      Used for solid button backgrounds and as the gradient's light-end stop
      so white/cream text and icons stay compliant everywhere the gradient
      is used as a background. */
   --terracotta-mid:   #A8481F;
-  --cream:        #FDF6EC;
-  --cream-2:      #F7E9D8;
+  --cream:        #FFFBF7;
+  --cream-2:      #FFF3E9;
   --peach:        #F0C9A6;
+  --pastel:       #FFC89B;
   --white:        #FFFFFF;
 
-  --text-on-dark:       #F5E9DD;
-  --text-on-dark-mid:   rgba(245,233,221,.58);
-  --text-on-dark-light: rgba(245,233,221,.36);
-  --text-on-dark-faint: rgba(245,233,221,.14);
+  --text-on-dark:       #FFF8F2;
+  --text-on-dark-mid:   rgba(255,248,242,.62);
+  --text-on-dark-light: rgba(255,248,242,.4);
+  --text-on-dark-faint: rgba(255,248,242,.16);
 
-  --text-on-light:      #241810;
-  --text-on-light-mid:  #7C6656;
-  --text-on-light-light:#B3A091;
+  --text-on-light:      #2A1B10;
+  --text-on-light-mid:  #6B5645;
+  --text-on-light-light:#9C8570;
 
-  --border-dark:  rgba(245,233,221,.1);
-  --border-light: #E9DBC8;
+  --border-dark:  rgba(255,248,242,.14);
+  --border-light: #F0DECB;
 
   --gradient-terracotta: linear-gradient(135deg, var(--terracotta-deep) 0%, var(--terracotta-mid) 100%);
-  --gradient-cta: linear-gradient(180deg, var(--black) 0%, #4A2313 38%, var(--terracotta) 72%, var(--peach) 100%);
+  /* Soft pastel band — verified: dark --text-on-light stays 11:1+ against
+     both ends, so full-bleed banners (stat band, benefits) can use this
+     with dark text instead of the old deep-orange-with-white-text look. */
+  --gradient-pastel: linear-gradient(135deg, var(--terracotta-pale) 0%, var(--pastel) 100%);
+  --gradient-cta: linear-gradient(180deg, var(--cream) 0%, var(--terracotta-pale) 55%, var(--pastel) 100%);
 
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
 
-  --shadow-sm:  0 1px 8px rgba(20,10,4,.28);
-  --shadow-md:  0 8px 30px rgba(20,10,4,.32);
-  --shadow-lg:  0 20px 60px rgba(20,10,4,.4);
+  --shadow-sm:  0 1px 8px rgba(60,35,15,.08);
+  --shadow-md:  0 8px 30px rgba(60,35,15,.12);
+  --shadow-lg:  0 20px 60px rgba(60,35,15,.18);
 
   --radius-pill: 999px;
   --radius-card: 26px;
@@ -57,8 +66,8 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
-  background: var(--black);
-  color: var(--text-on-dark);
+  background: var(--white);
+  color: var(--text-on-light);
   line-height: 1.6;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
@@ -93,21 +102,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto 72px;
 }
 
-/* ── Eyebrow ── */
+/* ── Eyebrow — light-mode default (most of the site); .section--on-dark
+   overrides it back for the photo-hero exceptions (hero/cta-banner). ── */
 .section__eyebrow {
   font-family: var(--font-sans);
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--terracotta-light);
+  color: var(--terracotta-deep);
   margin-bottom: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
 }
-.section--light .section__eyebrow { color: var(--terracotta-deep); }
 .section__eyebrow::before,
 .section__eyebrow::after {
   content: '';
@@ -133,30 +142,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: none;
 }
 
-/* ── Section headings ── */
+/* ── Section headings — light-mode default ── */
 .section__title {
   font-family: var(--font-serif);
   font-size: clamp(30px, 3.8vw, 48px);
   font-weight: 300;
   line-height: 1.2;
   letter-spacing: 0.01em;
-  color: var(--text-on-dark);
+  color: var(--text-on-light);
   margin-bottom: 16px;
 }
-.section--light .section__title { color: var(--text-on-light); }
 .section__title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--terracotta-light);
+  color: var(--terracotta);
 }
-.section--light .section__title em { color: var(--terracotta); }
 .section__subtitle {
   font-size: 15px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.85;
 }
-.section--light .section__subtitle { color: var(--text-on-light-mid); }
 .desktop-only { display: inline; }
 
 /* Visually hidden but still readable by screen readers/assistive tech —
@@ -219,16 +225,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid rgba(255,255,255,.4);
 }
 .btn--outline-white:hover {
-  background: rgba(255,255,255,.1);
-  border-color: rgba(255,255,255,.75);
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.8);
 }
 .btn--cream {
-  background: var(--cream);
+  background: var(--white);
   color: var(--text-on-light);
-  border: 1px solid var(--cream);
+  border: 1px solid var(--border-light);
 }
 .btn--cream:hover {
-  background: var(--white);
+  background: var(--cream-2);
   box-shadow: var(--shadow-md);
 }
 .btn--lg {
@@ -247,23 +253,39 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   pointer-events: none;
 }
 
-/* ── Navigation ── */
+/* ── Navigation — white bar, dark text ──
+   backdrop-filter lives on ::before, not on .nav itself: a filter/
+   backdrop-filter on an element makes IT the containing block for any
+   position:fixed descendant, instead of the viewport. .nav__links (the
+   mobile drawer) is one such descendant — with the filter on .nav
+   directly, its "top:0; bottom:0" resolved against .nav's own ~80px
+   height instead of the real viewport, collapsing the full-height
+   slide-in drawer into a small box pinned near the top. */
 .nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 20px 0;
-  background: linear-gradient(to bottom, rgba(23,17,13,.85) 0%, rgba(23,17,13,0) 100%);
+  padding: 18px 0;
   transition: var(--transition);
 }
-.nav.scrolled {
-  background: rgba(23,17,13,.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 10px 0;
-  box-shadow: 0 1px 0 var(--border-dark);
+.nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 var(--border-light);
+  transition: var(--transition);
 }
-.nav.scrolled .nav__logo-img { height: 58px; }
+.nav.scrolled::before {
+  background: rgba(255,255,255,.97);
+  box-shadow: 0 2px 12px rgba(60,35,15,.06);
+}
+.nav.scrolled {
+  padding: 10px 0;
+}
 .nav__container {
   max-width: 1200px;
   margin: 0 auto;
@@ -274,13 +296,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .nav__logo { display: flex; align-items: center; }
 .nav__logo-img {
-  height: 84px;
+  height: 46px;
   width: auto;
-  transition: height var(--transition), opacity var(--transition);
+  /* Deliberately static — no shrink-on-scroll sizing. */
+  transition: opacity var(--transition);
 }
 .nav__logo:hover .nav__logo-img { opacity: 0.75; }
-.nav__logo-img--black { display: none; }
-.nav__logo-img--white { display: block; }
+/* The nav is always light now, so it always wants the dark-ink logo mark. */
+.nav__logo-img--black { display: block; }
+.nav__logo-img--white { display: none; }
 
 .nav__links {
   display: flex;
@@ -289,10 +313,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .nav__link {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245,233,221,.68);
+  color: var(--text-on-light-mid);
   transition: color var(--transition);
   position: relative;
   padding-bottom: 2px;
@@ -303,13 +327,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   bottom: -2px;
   left: 50%; right: 50%;
   height: 1px;
-  background: var(--terracotta-light);
+  background: var(--terracotta);
   transition: left var(--transition), right var(--transition);
 }
-.nav__link:hover { color: var(--white); }
+.nav__link:hover { color: var(--text-on-light); }
 .nav__link:hover::after,
 .nav__link.active::after { left: 0; right: 0; }
-.nav__link.active { color: var(--white); }
+.nav__link.active { color: var(--text-on-light); }
 
 .nav__cta {
   font-size: 10px;
@@ -326,11 +350,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   width: 22px;
   height: 1px;
-  background: var(--white);
+  background: var(--text-on-light);
   transition: var(--transition);
 }
 
-/* ── Hero ── */
+/* ── Hero — photo/video hero keeps its dark scrim for legibility, warmed
+   toward the new palette rather than staying stark near-black. This is
+   the one deliberate "not literally white" zone, same as almost any
+   light-mode site with a full-bleed photo hero. ── */
 .hero {
   position: relative;
   height: 100svh;
@@ -396,17 +423,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(23,17,13,.45);
+  background: rgba(42,27,16,.45);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  border: 1px solid rgba(245,233,221,.3);
+  border: 1px solid rgba(255,248,242,.3);
   color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background var(--transition), border-color var(--transition);
 }
-.hero__video-toggle:hover { background: rgba(23,17,13,.7); border-color: rgba(245,233,221,.55); }
+.hero__video-toggle:hover { background: rgba(42,27,16,.7); border-color: rgba(255,248,242,.55); }
 .hero__video-toggle-icon--play { display: none; }
 .hero__video-toggle.is-paused .hero__video-toggle-icon--pause { display: none; }
 .hero__video-toggle.is-paused .hero__video-toggle-icon--play { display: block; }
@@ -415,9 +442,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   z-index: 3;
   background: linear-gradient(
     to bottom,
-    rgba(23,17,13,.8) 0%,
-    rgba(43,24,16,.68) 40%,
-    rgba(23,17,13,.9) 100%
+    rgba(42,27,16,.8) 0%,
+    rgba(74,45,25,.64) 40%,
+    rgba(42,27,16,.87) 100%
   );
 }
 .hero__content {
@@ -433,12 +460,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  /* --terracotta-light doesn't have enough headroom to stay AA-compliant
-     against this hero's video (its brightest zone sits right where the
-     eyebrow renders) without crushing the overlay to near-black — --peach
-     is light enough to clear it with real margin instead. */
-  color: var(--peach);
-  text-shadow: 0 1px 10px rgba(0,0,0,.7), 0 1px 2px rgba(0,0,0,.5);
+  color: var(--pastel);
+  text-shadow: 0 1px 10px rgba(0,0,0,.55), 0 1px 2px rgba(0,0,0,.4);
   margin-bottom: 32px;
   display: flex;
   align-items: center;
@@ -451,7 +474,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   width: 40px;
   height: 1px;
-  background: rgba(224,136,90,.4);
+  background: rgba(255,200,155,.5);
   flex-shrink: 0;
   transform: scaleX(0);
   transform-origin: center;
@@ -465,19 +488,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.03;
   letter-spacing: 0.015em;
   color: var(--white);
-  text-shadow: 0 2px 20px rgba(0,0,0,.6), 0 1px 4px rgba(0,0,0,.4);
+  text-shadow: 0 2px 20px rgba(0,0,0,.5), 0 1px 4px rgba(0,0,0,.35);
   margin-bottom: 28px;
 }
 .hero__title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--peach);
+  color: var(--pastel);
 }
 .hero__subtitle {
   font-size: clamp(14px, 1.5vw, 16px);
   font-weight: 300;
-  color: rgba(245,233,221,.85);
-  text-shadow: 0 1px 10px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.4);
+  color: rgba(255,248,242,.88);
+  text-shadow: 0 1px 10px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.35);
   line-height: 1.95;
   margin-bottom: 48px;
 }
@@ -495,7 +518,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(23,17,13,.6);
+  background: rgba(42,27,16,.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-top: 1px solid var(--border-dark);
@@ -515,7 +538,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 28px;
   font-weight: 300;
-  color: var(--peach);
+  color: var(--pastel);
   line-height: 1;
 }
 .hero__stat-label {
@@ -523,7 +546,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245,233,221,.4);
+  color: rgba(255,248,242,.6);
   margin-top: 6px;
 }
 .hero__stat-divider {
@@ -532,8 +555,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--border-dark);
 }
 
-/* ── About ── */
-.about { background: var(--black); }
+/* ── About (legacy section, unused by current pages but kept in sync) ── */
+.about { background: var(--white); }
 .about__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -546,7 +569,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .about__desc {
   font-size: 15px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 2;
   margin-bottom: 18px;
 }
@@ -572,10 +595,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 22px;
   padding: 26px 0;
   padding-left: 0;
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-light);
   transition: padding-left var(--transition), border-color var(--transition);
 }
-.feature-card:first-child { border-top: 1px solid var(--border-dark); }
+.feature-card:first-child { border-top: 1px solid var(--border-light); }
 .feature-card:hover {
   padding-left: 10px;
   border-color: var(--terracotta);
@@ -600,14 +623,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 400;
-  color: var(--text-on-dark);
+  color: var(--text-on-light);
   margin-bottom: 6px;
   transition: color var(--transition);
 }
 .feature-card__desc {
   font-size: 13px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.75;
 }
 
@@ -621,6 +644,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .property-card {
   background: var(--white);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
   overflow: hidden;
   transition: box-shadow var(--transition), transform var(--transition);
@@ -643,7 +667,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .property-card__badge {
   position: absolute;
   top: 16px; left: 16px;
-  background: var(--cream);
+  background: var(--white);
   color: var(--text-on-light);
   font-size: 9px;
   font-weight: 500;
@@ -666,7 +690,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .property-card__overlay {
   position: absolute; inset: 0;
-  background: rgba(23,17,13,.55);
+  background: rgba(42,27,16,.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -742,9 +766,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 24px;
 }
 
-/* ── Testimonials ── */
+/* ── Testimonials — light section, pastel-tinted cards for separation
+   against the white/cream page around them ── */
 .testimonials {
-  background: var(--black);
+  background: var(--white);
   overflow: hidden;
 }
 .testimonials__track-wrapper {
@@ -759,15 +784,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .testimonial-card {
   flex: 0 0 calc(33.333% - 16px);
-  background: var(--cream);
+  background: var(--cream-2);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
   padding: 36px;
   display: flex;
   flex-direction: column;
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
 }
 .testimonial-card:hover {
   transform: translateY(-4px);
+  background: var(--white);
   box-shadow: var(--shadow-lg);
 }
 .testimonial-card__stars {
@@ -828,8 +855,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .testimonials__btn {
   width: 44px; height: 44px;
   border-radius: 50%;
-  border: 1px solid var(--border-dark);
-  color: var(--text-on-dark-mid);
+  border: 1px solid var(--border-light);
+  color: var(--text-on-light-mid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -856,12 +883,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .testimonials__dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: var(--border-dark);
+  background: var(--border-light);
   transition: var(--transition);
   cursor: pointer;
 }
-.testimonials__dot.active { background: var(--terracotta-light); width: 22px; border-radius: var(--radius-pill); }
-.testimonials__dot:hover:not(.active) { background: var(--text-on-dark-light); }
+.testimonials__dot.active { background: var(--terracotta); width: 22px; border-radius: var(--radius-pill); }
+.testimonials__dot:hover:not(.active) { background: var(--text-on-light-light); }
 
 /* ── Host ── */
 .host { background: var(--cream); color: var(--text-on-light); }
@@ -930,7 +957,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .host__content .btn { margin-top: 20px; }
 
-/* ── CTA Banner (photo) ── */
+/* ── CTA Banner (photo) — same dark-scrim exception as the hero ── */
 .cta-banner {
   position: relative;
   padding: 160px 24px;
@@ -949,14 +976,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
      (bright terracotta at only .55 opacity) left the em/subtitle text
      there around 3.1–3.4:1. Darker + less saturated at the bottom fixes
      it while keeping the warm glow. */
-  background: linear-gradient(180deg, rgba(23,17,13,.8) 0%, rgba(50,26,17,.78) 55%, rgba(74,35,19,.8) 100%);
+  background: linear-gradient(180deg, rgba(42,27,16,.78) 0%, rgba(70,40,22,.75) 55%, rgba(90,50,25,.78) 100%);
 }
 .cta-banner__content {
   position: relative;
   max-width: 560px;
   margin: 0 auto;
 }
-.cta-banner .section__eyebrow { color: var(--peach); justify-content: center; }
+.cta-banner .section__eyebrow { color: var(--pastel); justify-content: center; }
 .cta-banner__title {
   font-family: var(--font-serif);
   font-size: clamp(44px, 6vw, 76px);
@@ -969,18 +996,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .cta-banner__title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--peach);
+  color: var(--pastel);
 }
 .cta-banner__subtitle {
   font-size: 15px;
   font-weight: 300;
-  color: rgba(255,255,255,.72);
+  color: rgba(255,255,255,.75);
   margin-bottom: 44px;
   letter-spacing: 0.04em;
 }
 
 /* ── CTA Gradient (no photo — the "Have a villa ready?" teaser before the
-   footer on index.html) ── */
+   footer on index.html) — fully light now, pale cream to pastel orange,
+   dark text throughout instead of the old dark-to-light transition. ── */
 .cta-gradient {
   position: relative;
   padding: 140px 24px 120px;
@@ -993,41 +1021,39 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 580px;
   margin: 0 auto;
 }
-.cta-gradient .section__eyebrow { color: var(--white); opacity: .85; justify-content: center; }
+.cta-gradient .section__eyebrow { color: var(--terracotta-deep); justify-content: center; }
 .cta-gradient .section__eyebrow::before,
-.cta-gradient .section__eyebrow::after { background: rgba(255,255,255,.5); }
+.cta-gradient .section__eyebrow::after { background: var(--terracotta); opacity: .5; }
 .cta-gradient__title {
   font-family: var(--font-serif);
   font-size: clamp(34px, 5vw, 56px);
   font-weight: 300;
   font-style: italic;
   letter-spacing: 0.01em;
-  /* The heading sits in the section's top ~60% — still the dark/brown part
-     of --gradient-cta, nowhere near the light peach stop at the bottom.
-     Light text was the actual requirement here; --black was a mistake
-     made without checking where the text lands versus the gradient. */
-  color: var(--cream);
+  color: var(--text-on-light);
   line-height: 1.18;
   margin-bottom: 40px;
 }
 .cta-gradient__title em {
   font-style: italic;
   font-weight: 300;
-  color: var(--peach);
+  color: var(--terracotta-deep);
 }
 
-/* ── Footer ── */
+/* ── Footer — light, warmed with a soft pastel-orange tint rather than
+   stark white, so it still reads as a distinct closing band. ── */
 .footer {
-  background: var(--black);
-  color: rgba(245,233,221,.5);
+  background: var(--cream-2);
+  color: var(--text-on-light-mid);
   padding: 80px 0 0;
+  border-top: 1px solid var(--border-light);
 }
 .footer__grid {
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 48px;
   padding-bottom: 60px;
-  border-bottom: 1px solid var(--border-dark);
+  border-bottom: 1px solid var(--border-light);
 }
 .footer__logo { margin-bottom: 20px; }
 .footer__logo-img { height: 108px; width: auto; }
@@ -1036,32 +1062,32 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-style: italic;
   font-weight: 300;
   font-size: 15px;
-  color: var(--terracotta-light);
+  color: var(--terracotta-deep);
   margin-bottom: 14px;
 }
 .footer__desc {
   font-size: 13px;
   font-weight: 300;
   line-height: 1.85;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   margin-bottom: 24px;
 }
 .footer__whatsapp {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: rgba(245,233,221,.72);
+  color: var(--text-on-light);
   font-size: 13px;
   font-weight: 300;
   transition: color var(--transition), gap var(--transition);
 }
-.footer__whatsapp:hover { color: var(--terracotta-light); gap: 12px; }
+.footer__whatsapp:hover { color: var(--terracotta-deep); gap: 12px; }
 .footer__heading {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: rgba(245,233,221,.6);
+  color: var(--text-on-light-mid);
   margin-bottom: 24px;
 }
 .footer__links {
@@ -1072,18 +1098,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer__links a {
   font-size: 13px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   transition: color var(--transition), padding-left var(--transition);
   display: block;
 }
 .footer__links a:hover {
-  color: var(--terracotta-light);
+  color: var(--terracotta-deep);
   padding-left: 6px;
 }
 .footer__links li {
   font-size: 13px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
 }
 .footer__bottom {
   display: flex;
@@ -1092,7 +1118,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 24px 0;
   font-size: 11px;
   font-weight: 300;
-  color: rgba(245,233,221,.55);
+  color: var(--text-on-light-mid);
 }
 
 /* ── Keyframes ── */
@@ -1142,7 +1168,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    areas → lead form) in the Artios palette.
    ═════════════════════════════════════════ */
 
-/* Photo hero */
+/* Photo hero — same dark-scrim exception as the homepage hero */
 .page-hero {
   position: relative;
   height: 86vh;
@@ -1158,11 +1184,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .page-hero__overlay {
   position: absolute; inset: 0;
   /* This photo (a bright white villa) needs a much stronger, near-uniform
-     veil than the homepage's — verified against the actual downloaded
-     image with real contrast math, not eyeballed: the previous version
-     left the eyebrow/title/subtitle down around 1.2–2.1:1 (see
+     veil than a typical scrim — verified against the actual downloaded
+     image with real contrast math, not eyeballed: an earlier, weaker
+     version left the eyebrow/title/subtitle down around 1.2–2.1:1 (see
      project memory for how this was caught). */
-  background: linear-gradient(180deg, rgba(23,17,13,.85) 0%, rgba(23,17,13,.85) 50%, rgba(23,17,13,.92) 100%);
+  background: linear-gradient(180deg, rgba(42,27,16,.85) 0%, rgba(42,27,16,.85) 50%, rgba(58,37,20,.9) 100%);
 }
 .page-hero__content {
   position: relative;
@@ -1170,6 +1196,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto;
   padding: 0 24px;
 }
+.page-hero__content .section__eyebrow { color: var(--pastel); }
 .page-hero__title {
   font-family: var(--font-serif);
   font-size: clamp(32px, 5.4vw, 58px);
@@ -1180,20 +1207,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .page-hero__title em {
   font-style: italic;
-  color: var(--peach);
+  color: var(--pastel);
 }
 .page-hero__subtitle {
   font-size: 15px;
   font-weight: 300;
-  color: rgba(245,233,221,.68);
+  color: rgba(255,248,242,.78);
   line-height: 1.9;
   max-width: 560px;
   margin: 0 auto 36px;
 }
 
-/* Stat band — full-width gradient strip below the hero */
+/* Stat band — full-width pastel strip below the hero, dark text */
 .stat-band {
-  background: var(--gradient-terracotta);
+  background: var(--gradient-pastel);
   padding: 52px 24px;
 }
 .stat-band__row {
@@ -1215,7 +1242,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: var(--font-serif);
   font-size: 38px;
   font-weight: 300;
-  color: var(--white);
+  color: var(--terracotta-deep);
   line-height: 1;
 }
 .stat-band__label {
@@ -1223,13 +1250,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.78);
+  color: var(--text-on-light);
+  opacity: .72;
   margin-top: 10px;
 }
-.stat-band__divider { width: 1px; height: 36px; background: rgba(255,255,255,.25); }
+.stat-band__divider { width: 1px; height: 36px; background: rgba(42,27,16,.16); }
 
-/* Process — 2x2 card grid */
-.process { background: var(--black); }
+/* Process — 2x2 card grid, white cards on a light section */
+.process { background: var(--cream); }
 .process__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1238,8 +1266,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto;
 }
 .process-card {
-  background: var(--dark-3);
-  border: 1px solid var(--border-dark);
+  background: var(--white);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
   overflow: hidden;
 }
@@ -1259,22 +1287,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(193,89,46,.15);
-  border: 1px solid rgba(193,89,46,.4);
-  color: var(--terracotta-light);
+  background: var(--terracotta-pale);
+  border: 1px solid rgba(193,89,46,.3);
+  color: var(--terracotta-deep);
   margin-bottom: 18px;
 }
 .process-card__title {
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 400;
-  color: var(--white);
+  color: var(--text-on-light);
   margin-bottom: 10px;
 }
 .process-card__desc {
   font-size: 13px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.75;
   margin-bottom: 18px;
 }
@@ -1288,7 +1316,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding-left: 16px;
   font-size: 12px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.6;
 }
 .process-card__list li::before {
@@ -1316,16 +1344,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 8px;
   letter-spacing: 0.02em;
 }
-.stat-card__ratio span { color: rgba(255,255,255,.5); }
+.stat-card__ratio span { color: rgba(255,255,255,.6); }
 .stat-card__desc {
   font-size: 13px;
   font-weight: 300;
-  color: rgba(255,255,255,.88);
+  color: rgba(255,255,255,.92);
   line-height: 1.7;
 }
 
-/* Owner testimonials (2-up quote cards on dark bg) */
-.owner-testimonials { background: var(--black); }
+/* Owner testimonials (2-up quote cards, light section) */
+.owner-testimonials { background: var(--white); }
 .owner-testimonials__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1336,13 +1364,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .owner-testimonials .testimonial-card { flex: none; }
 .owner-testimonials .testimonial-card__quote { font-size: 17px; }
 
-/* "What You Get" — gradient bg, cream benefit cards */
-.benefits { background: var(--gradient-terracotta); }
-.benefits .section__eyebrow { color: rgba(255,255,255,.85); }
+/* "What You Get" — pastel band, white benefit cards */
+.benefits { background: var(--gradient-pastel); }
+.benefits .section__eyebrow { color: var(--terracotta-deep); }
 .benefits .section__eyebrow::before,
-.benefits .section__eyebrow::after { background: rgba(255,255,255,.5); }
-.benefits .section__title { color: var(--white); }
-.benefits .section__title em { color: var(--cream); }
+.benefits .section__eyebrow::after { background: var(--terracotta); opacity: .5; }
+.benefits .section__title { color: var(--text-on-light); }
+.benefits .section__title em { color: var(--terracotta-deep); }
 .benefits__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1351,9 +1379,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto;
 }
 .benefit-card {
-  background: var(--cream);
+  background: var(--white);
   border-radius: var(--radius-card-sm);
   padding: 28px;
+  box-shadow: var(--shadow-sm);
 }
 .benefit-card__icon {
   width: 40px; height: 40px;
@@ -1421,7 +1450,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 28px;
 }
 
-/* Lead form — the real, functional CTA (builds a WhatsApp message client-side) */
+/* Lead form — the real, functional CTA (builds a WhatsApp/email message
+   client-side) */
 .lead { background: var(--cream-2); color: var(--text-on-light); }
 .lead__grid {
   display: grid;
@@ -1493,12 +1523,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .lead-form .btn { justify-content: center; margin-top: 4px; }
 
 /* ═════════════════════════════════════════
-   Simple hero — solid-bg hero used on About,
-   Villas and Contact (no photo, so none of the
-   text-over-image contrast work applies here).
+   Simple hero — light-bg hero used on About,
+   Villas and Contact (no photo, so no dark
+   scrim needed — fully in the light palette).
    ═════════════════════════════════════════ */
 .simple-hero {
-  background: var(--black);
+  background: var(--cream-2);
   text-align: center;
   padding: 170px 24px 90px;
 }
@@ -1508,14 +1538,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(32px, 5vw, 54px);
   font-weight: 300;
   line-height: 1.2;
-  color: var(--white);
+  color: var(--text-on-light);
   margin-bottom: 18px;
 }
-.simple-hero__title em { font-style: italic; color: var(--peach); }
+.simple-hero__title em { font-style: italic; color: var(--terracotta); }
 .simple-hero__subtitle {
   font-size: 15px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.85;
   max-width: 540px;
   margin: 0 auto;
@@ -1523,7 +1553,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .simple-hero__actions { margin-top: 32px; display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
 
 /* ── About — story + pull-quote ── */
-.story { background: var(--cream); color: var(--text-on-light); }
+.story { background: var(--white); color: var(--text-on-light); }
 .story__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1556,7 +1586,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .story__quote {
   margin-top: 40px;
   padding: 28px 32px;
-  background: var(--white);
+  background: var(--cream-2);
   border-left: 3px solid var(--terracotta);
   border-radius: var(--radius-card-sm);
   box-shadow: var(--shadow-sm);
@@ -1578,34 +1608,38 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 500;
 }
 
-/* ── About — "The Artios Way" numbered list ── */
-.way { background: var(--black); }
+/* ── About — "The Artios Way" numbered list, light section ── */
+.way { background: var(--cream); }
 .way__list { max-width: 720px; margin: 0 auto; }
 .way-item {
   display: grid;
   grid-template-columns: 64px 1fr;
   gap: 24px;
   padding: 32px 0;
-  border-top: 1px solid var(--border-dark);
+  border-top: 1px solid var(--border-light);
 }
-.way__list .way-item:last-child { border-bottom: 1px solid var(--border-dark); }
+.way__list .way-item:last-child { border-bottom: 1px solid var(--border-light); }
 .way-item__num {
   font-family: var(--font-serif);
   font-size: 26px;
   font-weight: 400;
-  color: var(--terracotta-light);
+  /* --terracotta only clears AA at large-text sizes (≥24px) — this drops
+     to 20px on mobile (see the 768px breakpoint below), which needs the
+     full 4.5:1 that --terracotta doesn't quite reach. --terracotta-deep
+     passes at any size, so it's used here regardless of breakpoint. */
+  color: var(--terracotta-deep);
 }
 .way-item__title {
   font-family: var(--font-serif);
   font-size: 22px;
   font-weight: 400;
-  color: var(--white);
+  color: var(--text-on-light);
   margin-bottom: 8px;
 }
 .way-item__desc {
   font-size: 14px;
   font-weight: 300;
-  color: var(--text-on-dark-mid);
+  color: var(--text-on-light-mid);
   line-height: 1.85;
   max-width: 480px;
 }
@@ -1630,7 +1664,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: var(--transition);
 }
 .filter-tab:hover { border-color: var(--terracotta); color: var(--terracotta-deep); }
-.filter-tab.active { background: var(--black); border-color: var(--black); color: var(--white); }
+.filter-tab.active { background: var(--terracotta-mid); border-color: var(--terracotta-mid); color: var(--white); }
 
 /* ── Villas — price + tag additions on the shared .property-card ── */
 .property-card__top {
@@ -1784,17 +1818,17 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
     position: fixed;
     top: 0; right: 0; bottom: 0;
     width: min(300px, 100vw);
-    background: var(--dark-2);
+    background: var(--white);
     flex-direction: column;
     align-items: flex-start;
     padding: 80px 32px 32px;
     gap: 0;
     transform: translateX(100%);
     transition: transform var(--transition);
-    box-shadow: -8px 0 40px rgba(0,0,0,.4);
+    box-shadow: -8px 0 40px rgba(60,35,15,.15);
   }
   .nav__links.open { transform: translateX(0); }
-  .nav__links li { width: 100%; border-bottom: 1px solid var(--border-dark); }
+  .nav__links li { width: 100%; border-bottom: 1px solid var(--border-light); }
   .nav__link {
     display: block;
     padding: 18px 0;
