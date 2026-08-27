@@ -1388,30 +1388,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: var(--terracotta);
 }
 
-/* Stat card (70:30), nested in the payoff process-card */
-.stat-card {
-  background: var(--gradient-terracotta);
-  border-radius: var(--radius-card-sm);
-  padding: 26px 28px;
-  margin-bottom: 20px;
-  box-shadow: var(--shadow-md);
-}
-.stat-card__ratio {
-  font-family: var(--font-serif);
-  font-size: 38px;
-  font-weight: 400;
-  color: var(--white);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-.stat-card__ratio span { color: rgba(255,255,255,.6); }
-.stat-card__desc {
-  font-size: 13px;
-  font-weight: 300;
-  color: rgba(255,255,255,.92);
-  line-height: 1.7;
-}
-
 /* Owner testimonials (2-up quote cards, light section) */
 .owner-testimonials { background: var(--white); }
 .owner-testimonials__grid {
@@ -1956,8 +1932,6 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   .work__grid { gap: 32px; }
   .lead-form { padding: 26px; }
   .lead-form__row { grid-template-columns: 1fr; }
-  .stat-card { padding: 22px 20px; }
-  .stat-card__ratio { font-size: 32px; }
   .cta-gradient { padding: 100px 20px 90px; }
 
   .simple-hero { padding: 140px 20px 70px; }
