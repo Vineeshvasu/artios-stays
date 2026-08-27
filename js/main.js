@@ -386,24 +386,10 @@ if (contactForm) {
   });
 }
 
-// ── Villas page filter tabs ──
-const filterTabs = document.getElementById('filterTabs');
-const villasGrid = document.getElementById('villasGrid');
-if (filterTabs && villasGrid) {
-  const cards = Array.from(villasGrid.querySelectorAll('.villa-card'));
-  filterTabs.addEventListener('click', e => {
-    const btn = e.target.closest('.filter-tab');
-    if (!btn) return;
-    filterTabs.querySelectorAll('.filter-tab').forEach(t => t.classList.toggle('active', t === btn));
-    const filter = btn.dataset.filter;
-    cards.forEach(card => {
-      const show = filter === 'all' || card.dataset.category === filter;
-      card.hidden = !show;
-    });
-  });
-}
-
 // ── Smooth anchor offset (accounts for fixed nav) ──
+// Also what powers the Goa/Sri Lanka filter-tab links on villas.html —
+// they're plain #id anchors, not a JS filter, so no dedicated handler is
+// needed for them beyond this generic one.
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', e => {
     const target = document.querySelector(anchor.getAttribute('href'));

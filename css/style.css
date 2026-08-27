@@ -1076,9 +1076,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 48px;
   padding-bottom: 60px;
   border-bottom: 1px solid var(--border-light);
+  align-items: start;
 }
-.footer__logo { margin-bottom: 20px; }
-.footer__logo-img { height: 108px; width: auto; }
+/* Matches .nav__logo-img exactly — the footer mark is the same brand
+   lockup at the same scale, not a separate, larger one. The old 108px
+   made it the loudest thing in the entire footer and threw off every
+   column next to it. */
+.footer__logo { margin-bottom: 16px; }
+.footer__logo-img { height: 46px; width: auto; }
 .footer__tagline {
   font-family: var(--font-serif);
   font-style: italic;
@@ -1105,12 +1110,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .footer__whatsapp:hover { color: var(--terracotta-deep); gap: 12px; }
 .footer__heading {
-  font-size: 9px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-on-light-mid);
-  margin-bottom: 24px;
+  color: var(--text-on-light);
+  margin-bottom: 20px;
 }
 .footer__links {
   display: flex;
@@ -1675,6 +1680,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 56px;
 }
 .filter-tab {
+  display: inline-block;
   padding: 11px 22px;
   border-radius: var(--radius-pill);
   border: 1px solid var(--border-light);
@@ -1715,7 +1721,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   max-width: 1000px;
   margin: 0 auto 64px;
 }
-.villa-card[hidden] { display: none; }
+/* Real listing counts (10 in Goa, growing) need a third column to stay
+   scannable at desktop widths rather than turning into one long scroll. */
+.villas__grid--wide { grid-template-columns: repeat(3, 1fr); max-width: 1160px; }
+/* Region wrapper the Goa/Sri Lanka filter-tab links jump to — scroll-margin
+   handles the fixed-nav offset natively as a fallback alongside main.js's
+   own smooth-anchor-offset handler (which pre-empts the native jump). */
+.villas__region { scroll-margin-top: 100px; }
+.villas__region-title {
+  max-width: 1000px;
+  margin: 0 auto 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-light);
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--text-on-light);
+}
 
 /* ── Homepage quick-link cards ── */
 .quicklinks { background: var(--cream); color: var(--text-on-light); }
@@ -1812,6 +1834,7 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   .property-card:last-child { grid-column: span 2; max-width: 480px; margin: 0 auto; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer__brand { grid-column: span 2; }
+  .villas__grid--wide { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
 }
 
 @media (max-width: 900px) {

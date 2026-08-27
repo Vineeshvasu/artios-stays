@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Villas — Artios Stays</title>
-  <meta name="description" content="Handpicked boutique villas across Coastal India and Southern Sri Lanka — walked through in person, personally managed, booked direct." />
+  <meta name="description" content="Handpicked boutique villas across Goa and Sri Lanka — walked through in person, personally managed, booked direct." />
   <meta property="og:title" content="Our Villas — Artios Stays" />
   <meta property="og:description" content="Every home we manage, we'd stay in ourselves." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,7 +44,7 @@
     <div class="simple-hero__content">
       <p class="section__eyebrow">Our Villas</p>
       <h1 class="simple-hero__title">Every home we manage, <em>we'd stay in ourselves.</em></h1>
-      <p class="simple-hero__subtitle">Handpicked, walked through in person, and kept exactly as good as the photos promise.</p>
+      <p class="simple-hero__subtitle">Handpicked, walked through in person, and kept exactly as good as the photos promise. Rates are quoted on request — message us on WhatsApp for current pricing on any villa below.</p>
     </div>
   </section>
 
@@ -53,136 +53,312 @@
     <div class="container">
       <h2 class="sr-only">Browse all villas</h2>
       <div class="filter-tabs" id="filterTabs">
-        <button class="filter-tab active" data-filter="all">All Villas</button>
-        <button class="filter-tab" data-filter="beachfront">Beachfront</button>
-        <button class="filter-tab" data-filter="garden">Garden Stay</button>
-        <button class="filter-tab" data-filter="groups">Large Groups</button>
-        <button class="filter-tab" data-filter="couples">Couples</button>
+        <a href="#goa" class="filter-tab">Goa</a>
+        <a href="#sri-lanka" class="filter-tab">Sri Lanka</a>
       </div>
 
-      <div class="villas__grid" id="villasGrid">
+      <!-- Region ids carry scroll-margin-top (see style.css) so the fixed
+           nav doesn't cover the heading when the filter-tab links above
+           jump straight to them — belt-and-braces alongside the site's
+           own JS smooth-anchor-offset handler in main.js. -->
+      <div class="villas__region" id="goa">
+        <h2 class="villas__region-title">Goa</h2>
+        <div class="villas__grid villas__grid--wide">
 
-        <article class="property-card villa-card" data-category="beachfront" data-animate>
-          <div class="property-card__media">
-            <img src="https://images.unsplash.com/photo-1596178067639-5c6e68aea6dc?w=800&q=80&auto=format" alt="Casa Marejada — beachfront villa with private pool" class="property-card__img" loading="lazy" />
-            <div class="property-card__badge">4 BR</div>
-            <div class="property-card__overlay">
-              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20Casa%20Marejada" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
-            </div>
-          </div>
-          <div class="property-card__body">
-            <div class="property-card__location">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Coastal India
-            </div>
-            <div class="property-card__top">
-              <h3 class="property-card__name">Casa Marejada</h3>
-              <div class="property-card__price">
-                <span class="property-card__price-num">₹14,500</span>
-                <span class="property-card__price-unit">per night</span>
+          <article class="property-card" data-animate>
+            <div class="property-card__media">
+              <img src="images/villas/rouz-villa-by-artios.jpg" alt="Rouz Villa by Artios — Vagator, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">4 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Rouz%20Villa%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
               </div>
             </div>
-            <p class="property-card__desc">A four-bedroom villa built around a courtyard pool, five minutes from the shore.</p>
-            <div class="property-card__specs">
-              <span class="spec">4 BR</span>
-              <span class="spec">Pool</span>
-              <span class="spec">Sleeps 8</span>
-              <span class="spec spec--security">Beachfront</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card villa-card" data-category="garden" data-animate data-delay="100">
-          <div class="property-card__media">
-            <img src="https://images.unsplash.com/photo-1722480419960-39017e2087a6?w=800&q=80&auto=format" alt="Oruwa Garden House — tropical garden villa" class="property-card__img" loading="lazy" />
-            <div class="property-card__badge">3 BR</div>
-            <div class="property-card__overlay">
-              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20Oruwa%20Garden%20House" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
-            </div>
-          </div>
-          <div class="property-card__body">
-            <div class="property-card__location">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Southern Sri Lanka
-            </div>
-            <div class="property-card__top">
-              <h3 class="property-card__name">Oruwa Garden House</h3>
-              <div class="property-card__price">
-                <span class="property-card__price-num">$120</span>
-                <span class="property-card__price-unit">per night</span>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Vagator, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Rouz Villa by Artios</h3>
+              </div>
+              <p class="property-card__desc">A spacious 4BHK luxury private pool villa next to Artjuna, minutes from Pablo's Bar and Thalassa — a long private pool, acres of garden, and a master suite with its own jacuzzi.</p>
+              <div class="property-card__specs">
+                <span class="spec">4 Bed</span>
+                <span class="spec">4 Bath</span>
+                <span class="spec">10 Guests</span>
+                <span class="spec spec--security">Private Pool</span>
               </div>
             </div>
-            <p class="property-card__desc">Tucked into a working garden, ten minutes from the bay, built for slow mornings.</p>
-            <div class="property-card__specs">
-              <span class="spec">3 BR</span>
-              <span class="spec">Garden</span>
-              <span class="spec">Sleeps 6</span>
-              <span class="spec spec--security">Garden Stay</span>
-            </div>
-          </div>
-        </article>
+          </article>
 
-        <article class="property-card villa-card" data-category="groups" data-animate data-delay="150">
-          <div class="property-card__media">
-            <img src="https://images.unsplash.com/photo-1760067537255-64d36262cb0a?w=800&q=80&auto=format" alt="The Kadamba House — large two-storey villa with pool" class="property-card__img" loading="lazy" />
-            <div class="property-card__badge">6 BR</div>
-            <div class="property-card__tag">Popular</div>
-            <div class="property-card__overlay">
-              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20The%20Kadamba%20House" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
-            </div>
-          </div>
-          <div class="property-card__body">
-            <div class="property-card__location">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Coastal India
-            </div>
-            <div class="property-card__top">
-              <h3 class="property-card__name">The Kadamba House</h3>
-              <div class="property-card__price">
-                <span class="property-card__price-num">₹22,000</span>
-                <span class="property-card__price-unit">per night</span>
+          <article class="property-card" data-animate data-delay="50">
+            <div class="property-card__media">
+              <img src="images/villas/casa-de-rouz-by-artios.jpg" alt="Casa de Rouz by Artios — Vagator, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">3 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Casa%20de%20Rouz%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
               </div>
             </div>
-            <p class="property-card__desc">Six bedrooms across two floors, a shared kitchen big enough for the whole trip.</p>
-            <div class="property-card__specs">
-              <span class="spec">6 BR</span>
-              <span class="spec">Pool</span>
-              <span class="spec">Sleeps 14</span>
-              <span class="spec spec--security">Large Groups</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="property-card villa-card" data-category="couples" data-animate data-delay="200">
-          <div class="property-card__media">
-            <img src="https://images.unsplash.com/photo-1779330303163-e2c3d4f90370?w=800&q=80&auto=format" alt="Sundowner Cottage — private deck at sunset" class="property-card__img" loading="lazy" />
-            <div class="property-card__badge">1 BR</div>
-            <div class="property-card__overlay">
-              <a href="https://wa.me/917709589459?text=Hi%2C%20I'm%20interested%20in%20Sundowner%20Cottage" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
-            </div>
-          </div>
-          <div class="property-card__body">
-            <div class="property-card__location">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-              Southern Sri Lanka
-            </div>
-            <div class="property-card__top">
-              <h3 class="property-card__name">Sundowner Cottage</h3>
-              <div class="property-card__price">
-                <span class="property-card__price-num">$85</span>
-                <span class="property-card__price-unit">per night</span>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Vagator, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Casa de Rouz by Artios</h3>
+              </div>
+              <p class="property-card__desc">A spacious 3BHK luxury private pool villa next to Artjuna and close to Pablo's Bar, Thalassa, and Vagator Beach — private pool, spacious garden, and modern interiors.</p>
+              <div class="property-card__specs">
+                <span class="spec">3 Bed</span>
+                <span class="spec">3 Bath</span>
+                <span class="spec">8 Guests</span>
+                <span class="spec spec--security">Private Pool</span>
               </div>
             </div>
-            <p class="property-card__desc">A one-bedroom hideaway with a private deck facing the evening light.</p>
-            <div class="property-card__specs">
-              <span class="spec">1 BR</span>
-              <span class="spec">Deck</span>
-              <span class="spec">Sleeps 2</span>
-              <span class="spec spec--security">Couples</span>
-            </div>
-          </div>
-        </article>
+          </article>
 
+          <article class="property-card" data-animate data-delay="100">
+            <div class="property-card__media">
+              <img src="images/villas/villa-casa-by-artios.jpg" alt="Villa Casa by Artios — Vagator, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">2 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Villa%20Casa%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Vagator, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Villa Casa by Artios</h3>
+              </div>
+              <p class="property-card__desc">A stylish 2BHK private pool villa next to Artjuna and close to Pablo's Bar — private pool and garden, built for couples, families, and small groups.</p>
+              <div class="property-card__specs">
+                <span class="spec">2 Bed</span>
+                <span class="spec">2 Bath</span>
+                <span class="spec">6 Guests</span>
+                <span class="spec spec--security">Private Pool</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="150">
+            <div class="property-card__media">
+              <img src="images/villas/mandre-house-by-artios.jpg" alt="Mandre House by Artios — Mandrem, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">2 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Mandre%20House%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Mandrem, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Mandre House by Artios</h3>
+              </div>
+              <p class="property-card__desc">A peaceful 2BHK beachside villa next to Prana Cafe in Mandrem — the beach is a few steps away, with modern interiors and an open kitchen for laid-back coastal living.</p>
+              <div class="property-card__specs">
+                <span class="spec">2 Bed</span>
+                <span class="spec">2 Bath</span>
+                <span class="spec">5 Guests</span>
+                <span class="spec spec--security">Beachside</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="200">
+            <div class="property-card__media">
+              <img src="images/villas/las-terrazos-by-artios.jpg" alt="Las Terrazos by Artios — Siolim, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">2 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Las%20Terrazos%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Siolim, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Las Terrazos by Artios</h3>
+              </div>
+              <p class="property-card__desc">A stylish 2BHK apartment on the 2nd floor with lift access, five minutes from Thalassa — private balcony, full kitchen, and access to a common swimming pool.</p>
+              <div class="property-card__specs">
+                <span class="spec">2 Bed</span>
+                <span class="spec">2 Bath</span>
+                <span class="spec">5 Guests</span>
+                <span class="spec spec--security">Common Pool</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="250">
+            <div class="property-card__media">
+              <img src="images/villas/villa-gossip.jpg" alt="Gossip Villa by Artios — Anjuna, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">3 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Gossip%20Villa%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Anjuna, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Gossip Villa by Artios</h3>
+              </div>
+              <p class="property-card__desc">An authentic Portuguese villa restored with a Goan touch, a short walk from Anjuna beach and Elephant & Co. — private pool, garden hammock, and views over the paddy fields.</p>
+              <div class="property-card__specs">
+                <span class="spec">3 Bed</span>
+                <span class="spec">3 Bath</span>
+                <span class="spec">6 Guests</span>
+                <span class="spec spec--security">Private Pool</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="300">
+            <div class="property-card__media">
+              <img src="images/villas/villa-vienna.jpg" alt="LoveStory Villa Vienna by Artios — Siolim, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">4 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20LoveStory%20Villa%20Vienna%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Siolim, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">LoveStory Villa Vienna by Artios</h3>
+              </div>
+              <p class="property-card__desc">Set in Siolim's artistic, bohemian quarter among galleries and boutique shops — interiors blending Portuguese charm with modern elegance, and an in-house restaurant.</p>
+              <div class="property-card__specs">
+                <span class="spec">4 Bed</span>
+                <span class="spec">4 Bath</span>
+                <span class="spec">6 Guests (+3 Extra)</span>
+                <span class="spec spec--security">In-House Restaurant</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="350">
+            <div class="property-card__media">
+              <img src="images/villas/villa-rumour.jpg" alt="Rumour Villa by Artios — Anjuna, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">4 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Rumour%20Villa%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Anjuna, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Rumour Villa by Artios</h3>
+              </div>
+              <p class="property-card__desc">A modern 4BHK villa with a private pool and garden near Baga beach and Hammerz club — Goan Portuguese charm with a dedicated chef available on request.</p>
+              <div class="property-card__specs">
+                <span class="spec">4 Bed</span>
+                <span class="spec">4 Bath</span>
+                <span class="spec">10 Guests</span>
+                <span class="spec spec--security">Chef</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="400">
+            <div class="property-card__media">
+              <img src="images/villas/villa-august.jpg" alt="Villa August — Saligao, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">4 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Villa%20August" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Saligao, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Villa August</h3>
+              </div>
+              <p class="property-card__desc">Centrally located with easy access to Panjim, Candolim, and Calangute — contemporary interiors, ensuite bedrooms, and a private pool with landscaped gardens.</p>
+              <div class="property-card__specs">
+                <span class="spec">4 Bed</span>
+                <span class="spec">4 Bath</span>
+                <span class="spec">8 Guests</span>
+                <span class="spec spec--security">Private Pool</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="property-card" data-animate data-delay="450">
+            <div class="property-card__media">
+              <img src="images/villas/kahani-by-artios.jpg" alt="Kahani by Artios — Anjuna, Goa" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">3 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Kahani%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Anjuna, Goa
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Kahani by Artios</h3>
+              </div>
+              <p class="property-card__desc">Set amid greenery in Anjuna — a private pool, a pickleball court, and a landscaped garden for a getaway that's both serene and lively.</p>
+              <div class="property-card__specs">
+                <span class="spec">3 Bed</span>
+                <span class="spec">3 Bath</span>
+                <span class="spec">8 Guests</span>
+                <span class="spec spec--security">Pickleball Court</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="villas__region" id="sri-lanka">
+        <h2 class="villas__region-title">Sri Lanka</h2>
+        <div class="villas__grid villas__grid--wide">
+
+          <article class="property-card" data-animate>
+            <div class="property-card__media">
+              <img src="images/villas/villa-lake-mountain-by-artios.jpg" alt="Villa Lake Mountain by Artios — Weligama, Sri Lanka" class="property-card__img" loading="lazy" />
+              <div class="property-card__badge">5 BR</div>
+              <div class="property-card__overlay">
+                <a href="https://wa.me/917709589459?text=Hi%2C%20I%27m%20interested%20in%20Villa%20Lake%20Mountain%20by%20Artios" target="_blank" rel="noopener" class="btn btn--gold">Enquire Now</a>
+              </div>
+            </div>
+            <div class="property-card__body">
+              <div class="property-card__location">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                Weligama, Sri Lanka
+              </div>
+              <div class="property-card__top">
+                <h3 class="property-card__name">Villa Lake Mountain by Artios</h3>
+              </div>
+              <p class="property-card__desc">A peaceful lakeview villa on acres of private garden and forest, five minutes from Kai Beach — bookable as a full 5-bedroom property or split into Upper and Ground Villas.</p>
+              <div class="property-card__specs">
+                <span class="spec">5 Bed</span>
+                <span class="spec">3 Bath</span>
+                <span class="spec">10 Guests</span>
+                <span class="spec spec--security">Lake View</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
 
       <div class="properties__cta" data-animate>
@@ -202,7 +378,7 @@
             <img src="images/logo-black.png" alt="Artios Stays" class="footer__logo-img" />
           </div>
           <p class="footer__tagline">Villas that feel lived in, not checked in.</p>
-          <p class="footer__desc">Personally managed boutique homes across Coastal India and Southern Sri Lanka — booked direct, run by people who actually pick up the phone.</p>
+          <p class="footer__desc">Personally managed boutique homes across Goa and Sri Lanka — booked direct, run by people who actually pick up the phone.</p>
           <a href="https://wa.me/917709589459" target="_blank" rel="noopener" class="footer__whatsapp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             +91 77095 89459
@@ -220,10 +396,10 @@
         <div class="footer__col">
           <h3 class="footer__heading">Our Villas</h3>
           <ul class="footer__links">
-            <li><a href="https://wa.me/917709589459?text=Casa%20Marejada%20enquiry" target="_blank" rel="noopener">Casa Marejada</a></li>
-            <li><a href="https://wa.me/917709589459?text=Oruwa%20Garden%20House%20enquiry" target="_blank" rel="noopener">Oruwa Garden House</a></li>
-            <li><a href="https://wa.me/917709589459?text=The%20Kadamba%20House%20enquiry" target="_blank" rel="noopener">The Kadamba House</a></li>
-            <li><a href="https://wa.me/917709589459?text=Sundowner%20Cottage%20enquiry" target="_blank" rel="noopener">Sundowner Cottage</a></li>
+            <li><a href="https://wa.me/917709589459?text=Rouz%20Villa%20by%20Artios%20enquiry" target="_blank" rel="noopener">Rouz Villa by Artios</a></li>
+            <li><a href="https://wa.me/917709589459?text=Casa%20de%20Rouz%20by%20Artios%20enquiry" target="_blank" rel="noopener">Casa de Rouz by Artios</a></li>
+            <li><a href="https://wa.me/917709589459?text=Villa%20Casa%20by%20Artios%20enquiry" target="_blank" rel="noopener">Villa Casa by Artios</a></li>
+            <li><a href="villas.html#sri-lanka">Villa Lake Mountain (Sri Lanka)</a></li>
           </ul>
         </div>
         <div class="footer__col">
