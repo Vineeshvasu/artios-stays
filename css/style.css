@@ -665,11 +665,25 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 60px;
 }
 .property-card {
+  position: relative;
   background: var(--white);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-card);
   overflow: hidden;
   transition: box-shadow var(--transition), transform var(--transition);
+}
+/* Stretched-link: makes the *entire* card open the villa page, not just
+   the photo or the name text. The <a> itself stays static (unpositioned)
+   so its ::after's position:absolute resolves against the nearest
+   positioned ancestor — .property-card above — letting inset:0 cover the
+   whole card exactly, at any card height, with no hardcoded size. The
+   WhatsApp "Enquire Now" button stays reachable on top via its own
+   higher z-index below. */
+.property-card__name a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .property-card:hover {
   box-shadow: var(--shadow-lg);
@@ -680,6 +694,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow: hidden;
   aspect-ratio: 3/2;
 }
+.property-card__img-link { display: block; width: 100%; height: 100%; }
 .property-card__img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -717,9 +732,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   justify-content: center;
   opacity: 0;
+  /* Always pointer-events:none, even while shown on hover — it's a full-
+     photo dark tint that only exists to center one small button; without
+     this, the *whole* photo (not just the button) would swallow clicks the
+     instant it's hovered, silently blocking .property-card__img-link
+     underneath everywhere except exactly on the button. The button itself
+     re-enables its own pointer-events below. */
+  pointer-events: none;
   transition: opacity var(--transition);
 }
 .property-card:hover .property-card__overlay { opacity: 1; }
+/* z-index:2 — one tier above the whole-card stretched-link (z-index:1 on
+   .property-card__name a::after) so this button still wins the click,
+   not the link underneath it, even though the stretched link now covers
+   the photo too. */
+.property-card__overlay .btn { pointer-events: auto; z-index: 2; }
 .property-card__body { padding: 30px; }
 .property-card__location {
   display: flex;
@@ -741,6 +768,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 10px;
   line-height: 1.3;
 }
+.property-card__name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.property-card__name a:hover { color: var(--terracotta-deep); }
 .property-card__desc {
   font-size: 13px;
   font-weight: 300;
@@ -1940,4 +1973,245 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   .hero__actions .btn { width: 100%; max-width: 260px; justify-content: center; }
   .hero__stat-divider { height: 24px; }
   .stat-band__divider { display: none; }
+}
+
+/* ═════════════════════════════════════════
+   Villa detail pages (villas/<slug>.html) —
+   real per-property pages pulled from
+   theartiosstays.com: gallery + full copy.
+   ═════════════════════════════════════════ */
+.villa-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-on-light-mid);
+  margin: 128px 0 24px;
+  transition: color var(--transition), gap var(--transition);
+}
+.villa-detail__back:hover { color: var(--terracotta-deep); gap: 10px; }
+.villa-detail__eyebrow { justify-content: flex-start; margin-bottom: 12px; }
+.villa-detail__title {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  color: var(--text-on-light);
+  margin-bottom: 10px;
+}
+.villa-detail__tagline {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-on-light-mid);
+  margin-bottom: 32px;
+}
+
+/* Gallery carousel — one real <img> per slide, translateX'd as a strip.
+   No library: main.js just measures the viewport and moves the track. */
+.villa-gallery {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 56px;
+  padding: 0 40px;
+}
+.villa-gallery__viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  aspect-ratio: 16 / 9;
+  background: var(--cream-2);
+}
+.villa-gallery__track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.villa-gallery__track img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex: 0 0 100%;
+}
+.villa-gallery__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.92);
+  color: var(--text-on-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  font-size: 18px;
+  transition: background var(--transition), transform 0.15s ease;
+  z-index: 2;
+}
+.villa-gallery__btn:hover { background: var(--white); }
+.villa-gallery__btn:active { transform: translateY(-50%) scale(0.92); }
+.villa-gallery__btn--prev { left: 56px; }
+.villa-gallery__btn--next { right: 56px; }
+.villa-gallery__counter {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2;
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(42,27,16,.55);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.villa-gallery__dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+.villa-gallery__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: none;
+  background: var(--border-light);
+  transition: var(--transition);
+}
+.villa-gallery__dot.active { background: var(--terracotta); width: 20px; border-radius: var(--radius-pill); }
+
+/* Body layout — copy + amenities on the left, a sticky enquiry card on
+   the right (mirrors the common villa-listing pattern their own site uses). */
+.villa-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 64px;
+  align-items: start;
+  padding-bottom: 100px;
+}
+.villa-detail__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 14px;
+  color: var(--text-on-light);
+  font-weight: 500;
+}
+.villa-detail__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.villa-detail__tag {
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--cream-2);
+  color: var(--terracotta-deep);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.villa-detail__desc {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text-on-light-mid);
+  margin-bottom: 40px;
+}
+.villa-detail__subhead {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--text-on-light);
+  margin-bottom: 20px;
+}
+.villa-detail__bullets { display: grid; gap: 18px; margin-bottom: 44px; }
+.villa-detail__bullets li {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-on-light-mid);
+  padding-left: 22px;
+  position: relative;
+}
+.villa-detail__bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--terracotta);
+}
+.villa-detail__bullets li strong { color: var(--text-on-light); font-weight: 600; }
+/* House Rules / Cancellation Policy / Things to Know — same list style as
+   the feature bullets above, just tighter and quieter since this is
+   logistics copy, not selling copy. */
+.villa-detail__bullets--policy { gap: 12px; margin-bottom: 40px; }
+/* --text-on-light-light is too pale for real body text on white/cream
+   (down to ~2.3:1, fails AA — see project notes) — this stays on
+   --text-on-light-mid like every other real-text color on this page. */
+.villa-detail__bullets--policy li { font-size: 13px; color: var(--text-on-light-mid); }
+.villa-detail__bullets--policy li strong { color: var(--text-on-light); }
+.villa-detail__bullets--policy li::before { background: var(--text-on-light-mid); }
+.villa-detail__amenities {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  margin-bottom: 8px;
+}
+.villa-detail__amenities li {
+  font-size: 13px;
+  color: var(--text-on-light-mid);
+  padding-left: 20px;
+  position: relative;
+  list-style: none;
+}
+.villa-detail__amenities li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+  font-weight: 600;
+}
+
+/* Sticky enquiry card */
+.villa-detail__aside { position: sticky; top: 110px; }
+.villa-detail__card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-card);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+.villa-detail__card-price {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--terracotta-deep);
+  margin-bottom: 4px;
+}
+.villa-detail__card-note {
+  font-size: 12px;
+  color: var(--text-on-light-mid);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.villa-detail__card .btn { width: 100%; justify-content: center; }
+.villa-detail__card .btn + .btn { margin-top: 10px; }
+
+@media (max-width: 900px) {
+  .villa-detail__back { margin: 108px 0 20px; }
+  .villa-gallery { padding: 0 20px; margin-bottom: 40px; }
+  .villa-gallery__btn { width: 38px; height: 38px; }
+  .villa-gallery__btn--prev { left: 12px; }
+  .villa-gallery__btn--next { right: 12px; }
+  .villa-detail__grid { grid-template-columns: 1fr; gap: 40px; padding-bottom: 72px; }
+  .villa-detail__aside { position: static; }
+  .villa-detail__amenities { grid-template-columns: 1fr; }
 }

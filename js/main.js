@@ -400,3 +400,48 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+// ── Villa detail page — photo gallery carousel ──
+// Plain translateX strip, no library. Runs on any .villa-gallery on the
+// page (villas/<slug>.html); does nothing elsewhere.
+document.querySelectorAll('.villa-gallery').forEach(gallery => {
+  const track  = gallery.querySelector('.villa-gallery__track');
+  const slides = Array.from(track.children);
+  const prevBtn = gallery.querySelector('.villa-gallery__btn--prev');
+  const nextBtn = gallery.querySelector('.villa-gallery__btn--next');
+  const dotsWrap = gallery.querySelector('.villa-gallery__dots');
+  const counter = gallery.querySelector('.villa-gallery__counter');
+  if (slides.length < 2) { if (prevBtn) prevBtn.hidden = true; if (nextBtn) nextBtn.hidden = true; return; }
+
+  let index = 0;
+  const dots = slides.map((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'villa-gallery__dot';
+    dot.setAttribute('aria-label', `Go to photo ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, di) => d.classList.toggle('active', di === index));
+    if (counter) counter.textContent = `${index + 1} / ${slides.length}`;
+  }
+  prevBtn.addEventListener('click', () => goTo(index - 1));
+  nextBtn.addEventListener('click', () => goTo(index + 1));
+
+  // Swipe support for touch devices.
+  let touchStartX = null;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    if (touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
+    touchStartX = null;
+  });
+
+  goTo(0);
+});
