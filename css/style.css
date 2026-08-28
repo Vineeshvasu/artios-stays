@@ -2025,6 +2025,13 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
 }
 .villa-gallery__btn:hover { background: var(--white); }
 .villa-gallery__btn:active { transform: translateY(-50%) scale(0.92); }
+/* main.js sets .hidden on these for single-photo galleries — the
+   attribute selector's higher specificity is what makes this actually
+   win over the class's own `display:flex` above (the [hidden] rule in
+   the browser's default stylesheet alone can't, since author styles beat
+   user-agent styles at equal specificity). Only surfaced once a villa
+   with a single photo (Oruwa) actually exercised this code path. */
+.villa-gallery__btn[hidden] { display: none; }
 .villa-gallery__btn--prev { left: 56px; }
 .villa-gallery__btn--next { right: 56px; }
 .villa-gallery__counter {
