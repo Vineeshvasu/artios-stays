@@ -1517,6 +1517,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   flex-direction: column;
   gap: 18px;
+  /* Grid items default to min-width:auto, i.e. never shrinking below
+     their content's own min-content size — and a <select>'s intrinsic
+     width is driven by its longest <option> text ("Current Listing
+     Status" etc.), which was wider than the mobile single-column
+     .lead__grid track. That pushed this form (and the whole page)
+     wider than the viewport, causing real horizontal scroll on phones. */
+  min-width: 0;
 }
 .lead-form__row {
   display: grid;
@@ -1914,7 +1921,16 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   .hero__stat-label { font-size: 9px; }
 
   .properties__grid { grid-template-columns: 1fr; }
-  .property-card:last-child { grid-column: span 1; max-width: 100%; margin: 0; }
+  /* Must match the scoped selector at the 1024px breakpoint
+     (.properties__grid .property-card:last-child) specificity-for-
+     specificity — a bare `.property-card:last-child` here is LOWER
+     specificity (two selectors vs three) and silently lost to that rule
+     at every width below 1024px regardless of source order, leaving
+     "span 2" active on a single-column grid: the grid had to invent an
+     implicit second column to satisfy it, which threw off auto-placement
+     for the *other* cards too (not just the spanning one) — exactly what
+     broke the homepage teaser on real phones. */
+  .properties__grid .property-card:last-child { grid-column: span 1; max-width: 100%; margin: 0; }
 
   .testimonials__track-wrapper { margin: 0 -20px; padding: 0 20px; }
   .testimonial-card { flex: 0 0 90vw; }
