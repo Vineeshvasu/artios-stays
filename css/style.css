@@ -1999,6 +1999,13 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   display: flex;
   height: 100%;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Without this, a touchmove here is ambiguous to the browser — on iOS in
+     particular it can get claimed by the edge-swipe-back gesture instead
+     of reaching our touchstart/touchend swipe handler in main.js, especially
+     now that the gallery runs edge-to-edge on mobile (see below). pan-y
+     keeps vertical page scroll working natively while telling the browser
+     horizontal panning here is our job, not its own. */
+  touch-action: pan-y;
 }
 .villa-gallery__track img {
   width: 100%;
@@ -2188,7 +2195,13 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
 
 @media (max-width: 900px) {
   .villa-detail__back { margin: 108px 0 20px; }
-  .villa-gallery { padding: 0 20px; margin-bottom: 40px; }
+  /* Full-bleed on mobile — no side padding, no rounded corners, and a
+     taller aspect ratio than desktop's 16:9 (which read as a thin strip
+     on a narrow phone). This is the real fix for "images look small":
+     the old 20px padding on both sides plus a wide/short crop was
+     shrinking the photo on exactly the screens where space is tightest. */
+  .villa-gallery { padding: 0; margin-bottom: 32px; }
+  .villa-gallery__viewport { border-radius: 0; aspect-ratio: 4/3; }
   .villa-gallery__btn { width: 38px; height: 38px; }
   .villa-gallery__btn--prev { left: 12px; }
   .villa-gallery__btn--next { right: 12px; }
