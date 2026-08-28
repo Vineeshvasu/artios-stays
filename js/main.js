@@ -433,15 +433,48 @@ document.querySelectorAll('.villa-gallery').forEach(gallery => {
   prevBtn.addEventListener('click', () => goTo(index - 1));
   nextBtn.addEventListener('click', () => goTo(index + 1));
 
-  // Swipe support for touch devices.
-  let touchStartX = null;
-  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-  track.addEventListener('touchend', e => {
-    if (touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
+  // Swipe support for touch devices. Tracked by touch identifier (not just
+  // "the first touch") and actively drives the track during the drag —
+  // without that, the browser has nothing telling it this gesture is ours,
+  // and on a real device it can quietly hand later swipes off to its own
+  // native scroll/pan handling instead of ever reaching touchend here
+  // (this is what was actually breaking "only the first photo swipes":
+  // the fix isn't in the end-of-gesture math, it's claiming the gesture
+  // while it's still moving).
+  let touchId = null, startX = 0, dragging = false, dx = 0;
+  track.addEventListener('touchstart', e => {
+    if (touchId !== null) return; // ignore a second finger joining mid-drag
+    const t = e.changedTouches[0];
+    touchId = t.identifier;
+    startX = t.clientX;
+    dragging = true;
+    dx = 0;
+    track.style.transition = 'none';
+  }, { passive: true });
+
+  track.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const t = Array.from(e.changedTouches).find(t => t.identifier === touchId);
+    if (!t) return;
+    dx = t.clientX - startX;
+    // Only claim the gesture (and block native vertical scroll) once
+    // horizontal intent is unambiguous — keeps vertical page scroll
+    // working normally for touches that aren't actually swiping the gallery.
+    if (Math.abs(dx) > 10) e.preventDefault();
+    track.style.transform = `translateX(calc(-${index * 100}% + ${dx}px))`;
+  }, { passive: false });
+
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    touchId = null;
+    track.style.transition = '';
     if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
-    touchStartX = null;
-  });
+    else goTo(index); // snap back to the current slide
+    dx = 0;
+  }
+  track.addEventListener('touchend', endDrag);
+  track.addEventListener('touchcancel', endDrag);
 
   goTo(0);
 });

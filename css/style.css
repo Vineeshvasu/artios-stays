@@ -2020,6 +2020,13 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
   height: 100%;
   object-fit: cover;
   flex: 0 0 100%;
+  /* Without these, some browsers treat a horizontal drag over an <img> as
+     a native image-drag/callout gesture instead of a page touch — main.js
+     also preventDefault()s once horizontal intent is clear, but this stops
+     the browser from ever contesting the gesture in the first place. */
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 .villa-gallery__btn {
   position: absolute;
