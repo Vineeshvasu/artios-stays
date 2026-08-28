@@ -1840,7 +1840,15 @@ a.contact-social__icon:hover { border-color: var(--terracotta); color: var(--ter
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .properties__grid { grid-template-columns: repeat(2, 1fr); }
-  .property-card:last-child { grid-column: span 2; max-width: 480px; margin: 0 auto; }
+  /* Scoped to .properties__grid specifically — this was unscoped before
+     and quietly broke villas.html's grids too: any grid whose last card
+     happened to be a lone :last-child got an unwanted implicit extra
+     column forced onto the *whole* grid (not just that card), corrupting
+     every column's width in the 900–1024px tablet range. Caught via
+     getComputedStyle on the container returning two wildly uneven tracks
+     ("2px 450px") instead of the single evenly-sized one every rule
+     candidate actually declared. */
+  .properties__grid .property-card:last-child { grid-column: span 2; max-width: 480px; margin: 0 auto; }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 36px; }
   .footer__brand { grid-column: span 2; }
   .villas__grid--wide { grid-template-columns: repeat(2, 1fr); max-width: 1000px; }
