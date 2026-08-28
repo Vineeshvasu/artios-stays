@@ -433,48 +433,55 @@ document.querySelectorAll('.villa-gallery').forEach(gallery => {
   prevBtn.addEventListener('click', () => goTo(index - 1));
   nextBtn.addEventListener('click', () => goTo(index + 1));
 
-  // Swipe support for touch devices. Tracked by touch identifier (not just
-  // "the first touch") and actively drives the track during the drag —
-  // without that, the browser has nothing telling it this gesture is ours,
-  // and on a real device it can quietly hand later swipes off to its own
-  // native scroll/pan handling instead of ever reaching touchend here
-  // (this is what was actually breaking "only the first photo swipes":
-  // the fix isn't in the end-of-gesture math, it's claiming the gesture
-  // while it's still moving).
-  let touchId = null, startX = 0, dragging = false, dx = 0;
-  track.addEventListener('touchstart', e => {
-    if (touchId !== null) return; // ignore a second finger joining mid-drag
-    const t = e.changedTouches[0];
-    touchId = t.identifier;
-    startX = t.clientX;
+  // Swipe support, via Pointer Events + setPointerCapture rather than raw
+  // touch events. Two earlier touch-event attempts (touchend-only, then a
+  // touchmove-driven version with conditional preventDefault) both worked
+  // in every synthetic test here but still broke after the first swipe on
+  // a real phone — consistent with a well-known class of touch-event bug
+  // where the browser's own early scroll-vs-gesture decision for a touch
+  // can't be overridden by a *later* preventDefault() in the same
+  // gesture, so timing that isn't visible to synthetic dispatch decides
+  // whether it works. Pointer Events sidestep that: setPointerCapture()
+  // makes the browser route every move/up for *this specific interaction*
+  // to this element no matter what, which is the guarantee raw touch
+  // events don't give.
+  let dragId = null, startX = 0, dragging = false, dx = 0;
+
+  track.addEventListener('pointerdown', e => {
+    if (e.pointerType === 'mouse') return; // don't hijack desktop click/hover
+    if (dragId !== null) return;
+    // Drag tracking itself must not depend on this succeeding — some
+    // browsers' pointer-capture support is patchy enough to throw here,
+    // and an uncaught throw before `dragging = true` below would silently
+    // kill the whole gesture with nothing visibly wrong. Capture is a
+    // nice-to-have (keeps the drag tracking even if the finger leaves the
+    // element); plain bubbled events still work without it.
+    try { track.setPointerCapture(e.pointerId); } catch (err) {}
+    dragId = e.pointerId;
+    startX = e.clientX;
     dragging = true;
     dx = 0;
     track.style.transition = 'none';
-  }, { passive: true });
+  });
 
-  track.addEventListener('touchmove', e => {
-    if (!dragging) return;
-    const t = Array.from(e.changedTouches).find(t => t.identifier === touchId);
-    if (!t) return;
-    dx = t.clientX - startX;
-    // Only claim the gesture (and block native vertical scroll) once
-    // horizontal intent is unambiguous — keeps vertical page scroll
-    // working normally for touches that aren't actually swiping the gallery.
-    if (Math.abs(dx) > 10) e.preventDefault();
+  track.addEventListener('pointermove', e => {
+    if (!dragging || e.pointerId !== dragId) return;
+    dx = e.clientX - startX;
     track.style.transform = `translateX(calc(-${index * 100}% + ${dx}px))`;
-  }, { passive: false });
+  });
 
   function endDrag(e) {
-    if (!dragging) return;
+    if (!dragging || (e.pointerId !== undefined && e.pointerId !== dragId)) return;
     dragging = false;
-    touchId = null;
+    try { if (dragId !== null && track.hasPointerCapture(dragId)) track.releasePointerCapture(dragId); } catch (err) {}
+    dragId = null;
     track.style.transition = '';
     if (Math.abs(dx) > 40) goTo(index + (dx < 0 ? 1 : -1));
     else goTo(index); // snap back to the current slide
     dx = 0;
   }
-  track.addEventListener('touchend', endDrag);
-  track.addEventListener('touchcancel', endDrag);
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
 
   goTo(0);
 });
